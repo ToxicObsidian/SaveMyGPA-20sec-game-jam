@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1hy2ixwopjdv"]
+
+[ext_resource type="PackedScene" uid="uid://budia60tn556e" path="res://scenes/prefabs/start_menu/about.tscn" id="1_p77by"]
+[ext_resource type="Script" uid="uid://bbyprt0g4hbfl" path="res://scripts/start_menu/StartMenu.cs" id="1_py75a"]
+[ext_resource type="Texture2D" uid="uid://d8c1qy4rwmn3" path="res://resources/images/classroom/classic/教室2 草图.jpg" id="2_qhw2v"]
+[ext_resource type="PackedScene" uid="uid://dlincb5bjuh2y" path="res://scenes/prefabs/start_menu/settings.tscn" id="4_qhw2v"]
+
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("StartGameBtn", "QuitGameBtn", "AboutBtn", "SettingsBtn", "AboutPage", "SettingsPage")]
+script = ExtResource("1_py75a")
+StartGameBtn = NodePath("HUD_UI/Btn_StartGame")
+QuitGameBtn = NodePath("HUD_UI/Btn_Quit")
+AboutBtn = NodePath("HUD_UI/Btn_About")
+SettingsBtn = NodePath("HUD_UI/Btn_Settings")
+AboutPage = NodePath("HUD_UI/About")
+SettingsPage = NodePath("HUD_UI/Settings")
+
+[node name="StartMenu BG" type="Sprite2D" parent="."]
+texture = ExtResource("2_qhw2v")
+centered = false
+
+[node name="HUD_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Btn_StartGame" type="Button" parent="HUD_UI"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 713.0
+offset_right = 956.0
+offset_bottom = 763.0
+text = "Start Game"
+
+[node name="Btn_Quit" type="Button" parent="HUD_UI"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 792.0
+offset_right = 956.0
+offset_bottom = 842.0
+text = "Quit"
+
+[node name="Btn_About" type="Button" parent="HUD_UI"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 1009.0
+offset_right = 133.0
+offset_bottom = 1059.0
+text = "About"
+
+[node name="Btn_Settings" type="Button" parent="HUD_UI"]
+layout_mode = 0
+offset_left = 1808.0
+offset_top = 8.0
+offset_right = 1908.0
+offset_bottom = 58.0
+text = "Settings"
+
+[node name="About" parent="HUD_UI" instance=ExtResource("1_p77by")]
+visible = false
+layout_mode = 1
+mouse_filter = 1
+
+[node name="Settings" parent="HUD_UI" instance=ExtResource("4_qhw2v")]
+visible = false
+layout_mode = 0

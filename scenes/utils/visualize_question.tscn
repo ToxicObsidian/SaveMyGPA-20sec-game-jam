@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dybj5vw0tvqyf"]
+
+[ext_resource type="Script" uid="uid://csllbood00id4" path="res://scripts/utils/VisualizeQuestion.cs" id="1_hxad6"]
+[ext_resource type="PackedScene" uid="uid://p0db6aqikxrr" path="res://scenes/prefabs/classrooms/question.tscn" id="2_aabnp"]
+[ext_resource type="Resource" uid="uid://d04jdaexcgy6b" path="res://resources/stocks/papers/q_t1.tres" id="2_bmu4v"]
+
+[node name="Visualize Question Base" type="Control" node_paths=PackedStringArray("Controller")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hxad6")
+Question = ExtResource("2_bmu4v")
+Controller = NodePath("Question Base")
+
+[node name="Question Base" parent="." instance=ExtResource("2_aabnp")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+grow_horizontal = 1

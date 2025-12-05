@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=3 uid="uid://cv0wprsmlp8iy"]
+
+[ext_resource type="Script" uid="uid://b5f8hyt22u6fx" path="res://scripts/classrooms/ClassroomManager.cs" id="1_1swyg"]
+[ext_resource type="Texture2D" uid="uid://d8c1qy4rwmn3" path="res://resources/images/classroom/classic/教室2 草图.jpg" id="2_p3ait"]
+[ext_resource type="Script" uid="uid://crvfnanga5wjv" path="res://scripts/classrooms/TeacherPathController.cs" id="3_1swyg"]
+[ext_resource type="Script" uid="uid://cchhpwolgqqop" path="res://scripts/classrooms/SeatManager.cs" id="4_p3ait"]
+[ext_resource type="Script" uid="uid://cqu65p1xjawuj" path="res://scripts/classrooms/PaperController.cs" id="6_2i0y1"]
+[ext_resource type="Texture2D" uid="uid://c00urx1liodtu" path="res://resources/images/paper/bg/classic_bg.png" id="6_hmqsk"]
+[ext_resource type="PackedScene" uid="uid://m0pohxvskw4v" path="res://scenes/prefabs/end_game/end_game_settlement.tscn" id="9_flsyq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmqsk"]
+
+[node name="Classroom20sClassic" type="Node2D" node_paths=PackedStringArray("PathController", "Seats", "Paper", "EndGame")]
+script = ExtResource("1_1swyg")
+PathController = NodePath("teacher_path")
+Seats = NodePath("SeatBase")
+Paper = NodePath("Paper")
+EndGame = NodePath("End Game Settlement")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_p3ait")
+centered = false
+
+[node name="teacher_path" type="Node2D" parent="." node_paths=PackedStringArray("path_line", "path_follow")]
+script = ExtResource("3_1swyg")
+path_line = NodePath("Path2D")
+path_follow = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="teacher_path"]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="teacher_path/Path2D"]
+position = Vector2(1038, 420)
+rotates = false
+
+[node name="SeatBase" type="Node2D" parent="."]
+script = ExtResource("4_p3ait")
+StartPoint = Vector2(200, 420)
+HorizontalInterval = 240.0
+VerticalInterval = 140.0
+MarginTop = 40.0
+MarginBottom = 60.0
+
+[node name="Paper" type="Sprite2D" parent="." node_paths=PackedStringArray("FrontFlip", "BackFlip", "Front", "Back")]
+z_index = 10
+position = Vector2(1607.9999, 536)
+texture = ExtResource("6_hmqsk")
+script = ExtResource("6_2i0y1")
+FrontFlip = NodePath("Front Flip")
+BackFlip = NodePath("Back Flip")
+Front = NodePath("Content Area/Front")
+Back = NodePath("Content Area/Back")
+
+[node name="Front Flip" type="Panel" parent="Paper"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -317.99988
+offset_top = -562.0
+offset_right = -291.0
+offset_bottom = -537.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hmqsk")
+
+[node name="Back Flip" type="Panel" parent="Paper"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -872.9999
+offset_top = -562.0
+offset_right = -846.0
+offset_bottom = -537.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hmqsk")
+
+[node name="Content Area" type="Control" parent="Paper"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -279.99988
+offset_top = -496.0
+offset_right = 280.00012
+offset_bottom = 488.0
+
+[node name="Front" type="VBoxContainer" parent="Paper/Content Area"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Back" type="VBoxContainer" parent="Paper/Content Area"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="End Game Settlement" parent="." instance=ExtResource("9_flsyq")]
+visible = false
+z_index = 20
+
+[node name="HUD_UI" type="Control" parent="."]
+visible = false
+z_index = 100
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2

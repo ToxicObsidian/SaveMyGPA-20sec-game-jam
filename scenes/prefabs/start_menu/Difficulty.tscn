@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dv0q706ei8o3h"]
+
+[node name="Difficulty" type="Control"]
+custom_minimum_size = Vector2(592, 400)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 592.0
+offset_bottom = 400.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 88.0

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ClassmateData" load_steps=16 format=3 uid="uid://bjwcdfb2kht1s"]
+
+[ext_resource type="Texture2D" uid="uid://bhae4280wqg2e" path="res://resources/images/characters/h_b_1.png" id="1_37cpj"]
+[ext_resource type="Script" uid="uid://b238tehlflh8r" path="res://scripts/resources/classroom/ClassmateData.cs" id="1_e67g6"]
+[ext_resource type="Texture2D" uid="uid://cqkfaoccim1pq" path="res://resources/images/characters/h_b_2.png" id="2_hg0b4"]
+[ext_resource type="Texture2D" uid="uid://bvgry4hh6auml" path="res://resources/images/characters/h_b_3.png" id="3_wid4i"]
+[ext_resource type="Texture2D" uid="uid://dseusrecnrxqv" path="res://resources/images/characters/h_b_4.png" id="4_hw025"]
+[ext_resource type="Texture2D" uid="uid://c4amryy8lswb8" path="res://resources/images/characters/o_b_1.png" id="5_4ees7"]
+[ext_resource type="Texture2D" uid="uid://brm07h5v3owrh" path="res://resources/images/characters/o_b_2.png" id="6_1dk35"]
+[ext_resource type="Texture2D" uid="uid://cp6veof6dt7k4" path="res://resources/images/characters/p_o_1.png" id="7_6x0l4"]
+[ext_resource type="Texture2D" uid="uid://81v7n86redvi" path="res://resources/images/characters/p_o_2.png" id="8_gcd15"]
+[ext_resource type="Texture2D" uid="uid://bpvaqqxuxwn12" path="res://resources/images/characters/h_g_1.png" id="9_f46aq"]
+[ext_resource type="Texture2D" uid="uid://5try4bj1rhxq" path="res://resources/images/characters/h_g_2.png" id="10_y37r6"]
+[ext_resource type="Texture2D" uid="uid://cvxc27blhvu2e" path="res://resources/images/characters/h_g_3.png" id="11_m01jb"]
+[ext_resource type="Texture2D" uid="uid://btta103crw7fg" path="res://resources/images/characters/h_g_4.png" id="12_resiv"]
+[ext_resource type="Texture2D" uid="uid://cspx3bgexd1sy" path="res://resources/images/characters/h_g_5.png" id="13_ya2ol"]
+[ext_resource type="Texture2D" uid="uid://dot5mtn8jv3fy" path="res://resources/images/characters/o_g_1.png" id="14_d5lek"]
+
+[resource]
+script = ExtResource("1_e67g6")
+BoyPostures = Array[Texture2D]([ExtResource("7_6x0l4"), ExtResource("8_gcd15")])
+GirlPostures = Array[Texture2D]([ExtResource("7_6x0l4"), ExtResource("8_gcd15")])
+BoyHairs = Array[Texture2D]([ExtResource("1_37cpj"), ExtResource("2_hg0b4"), ExtResource("3_wid4i"), ExtResource("4_hw025")])
+GirlHairs = Array[Texture2D]([ExtResource("9_f46aq"), ExtResource("10_y37r6"), ExtResource("11_m01jb"), ExtResource("12_resiv"), ExtResource("13_ya2ol")])
+BoyOutfits = Array[Texture2D]([ExtResource("5_4ees7"), ExtResource("6_1dk35")])
+GirlOutfits = Array[Texture2D]([ExtResource("14_d5lek")])
+metadata/_custom_type_script = "uid://b238tehlflh8r"

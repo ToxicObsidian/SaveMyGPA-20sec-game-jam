@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dlug04yeadjiy"]
+
+[ext_resource type="SystemFont" uid="uid://pxek1fatuq4a" path="res://resources/font/about_font_eng.tres" id="1_lbxr5"]
+
+[resource]
+default_font = ExtResource("1_lbxr5")

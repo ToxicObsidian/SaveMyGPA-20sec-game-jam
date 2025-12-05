@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="GlobalSettings" load_steps=2 format=3 uid="uid://yvoknodon4wl"]
+
+[ext_resource type="Script" uid="uid://c3shoeq1tly0d" path="res://scripts/resources/GlobalSettings.cs" id="1_dw4ka"]
+
+[resource]
+script = ExtResource("1_dw4ka")
+DifficultyMap = Dictionary[int, float]({
+0: 0.0,
+1: 0.0,
+2: 0.0,
+3: 0.0,
+4: 0.0,
+5: 0.0,
+6: 0.0
+})
+metadata/_custom_type_script = "uid://c3shoeq1tly0d"
