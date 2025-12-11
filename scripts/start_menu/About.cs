@@ -1,14 +1,11 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class About : Control
 {
 	[Export]
 	public ColorRect DetectionBG { get; set; }
-	[Export]
-	public RichTextLabel ObsidianRTL { get; set; }
-	[Export]
-	public RichTextLabel Stardust_MFRTL { get; set; }
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -16,8 +13,14 @@ public partial class About : Control
 	{
 		SetProcess(true);
 		DetectionBG.GuiInput += OnDetectionBGPressed;
-		ObsidianRTL.MetaClicked += OnRTLUrlClicked;
-		Stardust_MFRTL.MetaClicked += OnRTLUrlClicked;
+
+		Stack<Node> children_stack = new(GetChildren());
+		while(children_stack.Count > 0)
+		{
+			var child = children_stack.Pop();
+			if (child is RichTextLabel rtl) rtl.MetaClicked += OnRTLUrlClicked;
+			foreach (var node in child.GetChildren()) children_stack.Push(node);
+		}
 	}
 
 
@@ -45,6 +48,7 @@ public partial class About : Control
 
 		if(url.StartsWith("http"))
 		{
+			GD.Print($"Open url: {url}");
 			OS.ShellOpen(url);
 		}
 	}

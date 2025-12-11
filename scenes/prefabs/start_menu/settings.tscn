@@ -1,10 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlincb5bjuh2y"]
+[gd_scene load_steps=11 format=3 uid="uid://dlincb5bjuh2y"]
 
 [ext_resource type="SystemFont" uid="uid://pxek1fatuq4a" path="res://resources/font/about_font_eng.tres" id="1_2ja2e"]
 [ext_resource type="Script" uid="uid://1eixficcpmks" path="res://scripts/SettingsManager.cs" id="1_qotqr"]
-[ext_resource type="PackedScene" uid="uid://dv0q706ei8o3h" path="res://scenes/prefabs/start_menu/Difficulty.tscn" id="2_3ir3y"]
-[ext_resource type="Texture2D" uid="uid://dlblt6d0b4y7n" path="res://resources/images/UI/Settings/全屏.png" id="2_kaht5"]
-[ext_resource type="Texture2D" uid="uid://xmcheqraq8du" path="res://resources/images/UI/Settings/非全屏.png" id="3_qotqr"]
+[ext_resource type="PackedScene" uid="uid://dv0q706ei8o3h" path="res://scenes/prefabs/start_menu/difficulty.tscn" id="2_3ir3y"]
+[ext_resource type="Texture2D" uid="uid://dlblt6d0b4y7n" path="res://resources/images/UI/Settings/full_screen.png" id="2_kaht5"]
+[ext_resource type="Texture2D" uid="uid://xmcheqraq8du" path="res://resources/images/UI/Settings/windowed.png" id="3_qotqr"]
+
+[sub_resource type="Gradient" id="Gradient_qotqr"]
+colors = PackedColorArray(0.61745477, 0.61745477, 0.6174547, 1, 0.88972396, 0.889724, 0.88972396, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4aams"]
+gradient = SubResource("Gradient_qotqr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2wsu"]
+texture = SubResource("GradientTexture1D_4aams")
 
 [sub_resource type="LabelSettings" id="LabelSettings_3ir3y"]
 font = ExtResource("1_2ja2e")
@@ -50,6 +59,7 @@ offset_right = 300.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_k2wsu")
 
 [node name="Title" type="Label" parent="Panel"]
 layout_mode = 1

@@ -21,7 +21,7 @@ font_size = 18
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="About" type="Control" node_paths=PackedStringArray("DetectionBG", "ObsidianRTL", "Stardust_MFRTL")]
+[node name="About" type="Control" node_paths=PackedStringArray("DetectionBG")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,8 +32,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_g2xg5")
 DetectionBG = NodePath("Click Detection BG")
-ObsidianRTL = NodePath("Panel/Credits/Obsidian")
-Stardust_MFRTL = NodePath("Panel/Credits/Stardust-MF")
 
 [node name="Click Detection BG" type="ColorRect" parent="."]
 layout_mode = 1
@@ -110,7 +108,7 @@ grow_vertical = 0
 
 [node name="Desc" type="Label" parent="Panel/Credits"]
 layout_mode = 2
-text = "This game is proudly brought by:"
+text = "This game is proudly brought you by:"
 label_settings = SubResource("LabelSettings_rkidp")
 
 [node name="Obsidian" type="RichTextLabel" parent="Panel/Credits"]
@@ -124,7 +122,44 @@ scroll_active = false
 
 [node name="Stardust-MF" type="RichTextLabel" parent="Panel/Credits"]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_rkidp")
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "Stardust-MF ([url=https://stardust-mf.itch.io/]@Stardust_MF[/url])"
+fit_content = true
+scroll_active = false
+
+[node name="Audio Credits" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -212.0
+offset_right = 600.0
+offset_bottom = -135.0
+grow_vertical = 0
+
+[node name="Desc" type="Label" parent="Panel/Audio Credits"]
+layout_mode = 2
+text = "Audio materials are from:"
+label_settings = SubResource("LabelSettings_rkidp")
+
+[node name="Dova-S" type="RichTextLabel" parent="Panel/Audio Credits"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_rkidp")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[url=https://dova-s.jp/]Dova-Syndrome[/url]: [url=https://dova-s.jp/EN/_contents/author/profile287.html]@Kobat[/url]"
+fit_content = true
+scroll_active = false
+
+[node name="ZapSplat" type="RichTextLabel" parent="Panel/Audio Credits"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_rkidp")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[url=https://www.zapsplat.com/]ZapSplat[/url]"
 fit_content = true
 scroll_active = false

@@ -9,7 +9,7 @@ public partial class TeacherPathController : Node2D
 	protected double start_time = -1.0f;
 	protected double end_time = -1.0f;
 	protected Tween _walk_tween;
-	protected Node2D _teacher_base;
+	protected TeacherController _teacher_base;
 	protected bool _right_side = true;
 
 	public float Progress
@@ -89,7 +89,7 @@ public partial class TeacherPathController : Node2D
 	}
 
 
-	public void SetTeacher(Node2D teacher_base)
+	public void SetTeacher(TeacherController teacher_base)
 	{
 		teacher_base.GetParent()?.RemoveChild(teacher_base);
 		AddChild(teacher_base);
@@ -139,6 +139,7 @@ public partial class TeacherPathController : Node2D
 				RemoveChild(_teacher_base);
 				path_follow.AddChild(_teacher_base);
 				_teacher_base.Visible = true;
+				_teacher_base.PlayWalk();
 				_walk_tween = teacher_move_tween;
 
                 EmitSignal(SignalName.WalkingStarted);

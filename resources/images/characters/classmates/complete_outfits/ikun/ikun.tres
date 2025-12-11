@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ClassmateCompleteOutfitData" load_steps=5 format=3 uid="uid://cldjxsfg1el2g"]
+
+[ext_resource type="Texture2D" uid="uid://cgq4oue5g5kdp" path="res://resources/images/characters/classmates/complete_outfits/ikun/ikun_body.png" id="1_b4p62"]
+[ext_resource type="Texture2D" uid="uid://b1a0o5x7cwy3m" path="res://resources/images/characters/classmates/complete_outfits/ikun/ikun_hair.png" id="2_yfct0"]
+[ext_resource type="Texture2D" uid="uid://brm07h5v3owrh" path="res://resources/images/characters/classmates/complete_outfits/ikun/ikun_outfit.png" id="3_en1uo"]
+[ext_resource type="Script" uid="uid://ownp5hefuxr" path="res://scripts/resources/classroom/ClassmateCompleteOutfitData.cs" id="4_quswd"]
+
+[resource]
+script = ExtResource("4_quswd")
+Name = "ikun"
+Body = ExtResource("1_b4p62")
+Hair = ExtResource("2_yfct0")
+Outfit = ExtResource("3_en1uo")
+metadata/_custom_type_script = "uid://ownp5hefuxr"

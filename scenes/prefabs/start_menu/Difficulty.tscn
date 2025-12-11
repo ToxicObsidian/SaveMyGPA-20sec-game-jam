@@ -1,13 +1,53 @@
-[gd_scene format=3 uid="uid://dv0q706ei8o3h"]
+[gd_scene load_steps=4 format=3 uid="uid://dv0q706ei8o3h"]
 
-[node name="Difficulty" type="Control"]
+[ext_resource type="Texture2D" uid="uid://8ob7lfb03ol6" path="res://resources/images/UI/Settings/difficulty_5.png" id="1_06hnc"]
+[ext_resource type="Script" uid="uid://dg8mq2mke215u" path="res://scripts/start_menu/Difficulty.cs" id="1_214do"]
+[ext_resource type="Texture2D" uid="uid://blayxjm7ksx86" path="res://resources/images/UI/Settings/difficulty_0.png" id="2_214do"]
+
+[node name="Difficulty" type="Control" node_paths=PackedStringArray("DifficultySlider", "DifficultyExpr")]
 custom_minimum_size = Vector2(592, 400)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 592.0
 offset_bottom = 400.0
+script = ExtResource("1_214do")
+DifficultySlider = NodePath("difficulty_slider")
+DifficultyExpr = NodePath("TextureRect")
+
+[node name="img_diff_5" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 32.0
+offset_right = 584.0
+offset_bottom = 120.0
+texture = ExtResource("1_06hnc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="img_diff_0" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 112.0
+offset_bottom = 120.0
+texture = ExtResource("2_214do")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="difficulty_slider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 24.0
+grow_horizontal = 2
+max_value = 5.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 88.0
-offset_bottom = 88.0
+offset_left = 264.0
+offset_top = 128.0
+offset_right = 304.0
+offset_bottom = 168.0

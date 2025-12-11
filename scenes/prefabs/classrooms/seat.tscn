@@ -1,21 +1,22 @@
-[gd_scene load_steps=20 format=3 uid="uid://clww78mdh8vk4"]
+[gd_scene load_steps=21 format=3 uid="uid://clww78mdh8vk4"]
 
-[ext_resource type="Texture2D" uid="uid://bp2pgqxixqaq2" path="res://resources/images/classroom/classic/桌子.png" id="1_ck3wk"]
+[ext_resource type="Texture2D" uid="uid://bp2pgqxixqaq2" path="res://resources/images/classroom/classic/desk.png" id="1_ck3wk"]
 [ext_resource type="Script" uid="uid://gp0u0qydjno5" path="res://scripts/classrooms/SeatController.cs" id="1_duv15"]
 [ext_resource type="Script" uid="uid://bnux5t0uipjeo" path="res://scripts/classrooms/CharacterController.cs" id="3_fq3bn"]
-[ext_resource type="Texture2D" uid="uid://bfmvv2wum5u5r" path="res://resources/images/classroom/classic/椅子.png" id="5_miq8g"]
-[ext_resource type="Texture2D" uid="uid://bdxprv7sbl7ho" path="res://resources/images/paper/icons/submit_answer.png" id="8_5ti38"]
+[ext_resource type="Texture2D" uid="uid://bfmvv2wum5u5r" path="res://resources/images/classroom/classic/chair.png" id="5_miq8g"]
+[ext_resource type="Texture2D" uid="uid://bqw46etvypklw" path="res://resources/images/characters/classmates/bubbles/submit_answer.png" id="8_5ti38"]
 [ext_resource type="Script" uid="uid://g1a0k70q0j14" path="res://scripts/classrooms/BubbleController.cs" id="8_670o8"]
 [ext_resource type="Script" uid="uid://d3xqgapwxe0h1" path="res://scripts/classrooms/InteractionController.cs" id="8_fq3bn"]
-[ext_resource type="Texture2D" uid="uid://ds0k3be0pcpbe" path="res://resources/images/characters/bubbles/回复1.png" id="8_ii0lr"]
-[ext_resource type="Texture2D" uid="uid://c6tfxsawv6ber" path="res://resources/images/characters/emotions/我有一计.png" id="9_1quvv"]
-[ext_resource type="Texture2D" uid="uid://dbs7q4g63wj3d" path="res://resources/images/paper/icons/cancel_answer.png" id="9_670o8"]
+[ext_resource type="Texture2D" uid="uid://ds0k3be0pcpbe" path="res://resources/images/characters/classmates/bubbles/回复1.png" id="8_ii0lr"]
+[ext_resource type="Texture2D" uid="uid://c6tfxsawv6ber" path="res://resources/images/characters/classmates/emotions/我有一计.png" id="9_1quvv"]
+[ext_resource type="Texture2D" uid="uid://bd4hj5tmbey5e" path="res://resources/images/characters/classmates/bubbles/cancel_answer.png" id="9_670o8"]
 [ext_resource type="PackedScene" uid="uid://dwfn4ovmd1dr4" path="res://scenes/prefabs/classrooms/button.tscn" id="9_miq8g"]
-[ext_resource type="Texture2D" uid="uid://dq3prkjt318i4" path="res://resources/images/characters/bubbles/回复2.png" id="10_5ti38"]
-[ext_resource type="Texture2D" uid="uid://djf8kenq1nbev" path="res://resources/images/characters/emotions/思考.png" id="11_670o8"]
-[ext_resource type="Texture2D" uid="uid://g5ua687g847o" path="res://resources/images/characters/bubbles/回复3.png" id="12_j8vxa"]
-[ext_resource type="Texture2D" uid="uid://btr7qysx2sj6g" path="res://resources/images/characters/emotions/伤心.png" id="13_2e6j2"]
-[ext_resource type="Texture2D" uid="uid://dlxfki4q80mys" path="res://resources/images/characters/老师带底色图.png" id="15_1quvv"]
+[ext_resource type="Texture2D" uid="uid://dq3prkjt318i4" path="res://resources/images/characters/classmates/bubbles/回复2.png" id="10_5ti38"]
+[ext_resource type="Texture2D" uid="uid://djf8kenq1nbev" path="res://resources/images/characters/classmates/emotions/思考.png" id="11_670o8"]
+[ext_resource type="Texture2D" uid="uid://g5ua687g847o" path="res://resources/images/characters/classmates/bubbles/回复3.png" id="12_j8vxa"]
+[ext_resource type="Texture2D" uid="uid://btr7qysx2sj6g" path="res://resources/images/characters/classmates/emotions/伤心.png" id="13_2e6j2"]
+[ext_resource type="Texture2D" uid="uid://caut7g55rbdx2" path="res://resources/images/characters/classmates/bubbles/normal_bubble.png" id="14_670o8"]
+[ext_resource type="Texture2D" uid="uid://dlxfki4q80mys" path="res://resources/images/characters/teacher/base.png" id="15_1quvv"]
 
 [sub_resource type="Gradient" id="Gradient_x3sok"]
 
@@ -27,7 +28,7 @@ height = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1quvv"]
 size = Vector2(10, 10)
 
-[node name="Seat" type="Node2D" node_paths=PackedStringArray("Character", "Interaction", "CollectPaperAreaLeft", "CollectPaperAreaRight", "Desk", "Chair", "LeftBubble", "RightBubble", "FrontBubble")]
+[node name="Seat" type="Node2D" node_paths=PackedStringArray("Character", "Interaction", "CollectPaperAreaLeft", "CollectPaperAreaRight", "Desk", "Chair", "NormalBubble", "LeftBubble", "RightBubble", "FrontBubble")]
 script = ExtResource("1_duv15")
 Character = NodePath("Character Base")
 Interaction = NodePath("Interaction Base")
@@ -35,6 +36,7 @@ CollectPaperAreaLeft = NodePath("Positioning Anchors/Teacher Walk Position Left/
 CollectPaperAreaRight = NodePath("Positioning Anchors/Teacher Walk Position Right/Pick Paper Area")
 Desk = NodePath("Desk")
 Chair = NodePath("Chair")
+NormalBubble = NodePath("Bubble Base/Normal Bubble Base")
 LeftBubble = NodePath("Bubble Base/Left Bubble Base")
 RightBubble = NodePath("Bubble Base/Right Bubble Base")
 FrontBubble = NodePath("Bubble Base/Front Bubble Base")
@@ -52,9 +54,9 @@ Outfit = NodePath("Character Outfit")
 
 [node name="Character Body" type="Sprite2D" parent="Character Base"]
 
-[node name="Character Hair" type="Sprite2D" parent="Character Base"]
-
 [node name="Character Outfit" type="Sprite2D" parent="Character Base"]
+
+[node name="Character Hair" type="Sprite2D" parent="Character Base"]
 
 [node name="Chair" type="Sprite2D" parent="."]
 position = Vector2(0, -20)
@@ -64,7 +66,7 @@ texture = ExtResource("5_miq8g")
 z_index = 20
 
 [node name="Left Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("Bubble", "Answer", "Emotion", "DetermineAnswer", "DisposeAnswer")]
-position = Vector2(-248, -488)
+position = Vector2(-38, -150)
 script = ExtResource("8_670o8")
 Bubble = NodePath("Left Bubble")
 Answer = NodePath("Answer")
@@ -73,38 +75,39 @@ DetermineAnswer = NodePath("Determine Answer")
 DisposeAnswer = NodePath("Dispose Answer")
 
 [node name="Left Bubble" type="Sprite2D" parent="Bubble Base/Left Bubble Base"]
+position = Vector2(-225, -340)
 texture = ExtResource("10_5ti38")
 centered = false
 
 [node name="Left Bubble Emotion" type="Sprite2D" parent="Bubble Base/Left Bubble Base"]
-position = Vector2(224, 128)
+position = Vector2(-1, -212)
 texture = ExtResource("11_670o8")
 
 [node name="Answer" type="Sprite2D" parent="Bubble Base/Left Bubble Base"]
-position = Vector2(104, 208)
+position = Vector2(-121, -132)
 
 [node name="Determine Answer" type="TextureButton" parent="Bubble Base/Left Bubble Base"]
-offset_left = 8.0
-offset_top = 272.0
-offset_right = 56.0
-offset_bottom = 320.0
+offset_left = -217.0
+offset_top = -68.0
+offset_right = -169.0
+offset_bottom = -20.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_5ti38")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Dispose Answer" type="TextureButton" parent="Bubble Base/Left Bubble Base"]
-offset_left = 72.0
-offset_top = 272.0
-offset_right = 120.0
-offset_bottom = 320.0
+offset_left = -153.0
+offset_top = -68.0
+offset_right = -105.0
+offset_bottom = -20.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("9_670o8")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Front Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("Bubble", "Answer", "Emotion", "DetermineAnswer", "DisposeAnswer")]
-position = Vector2(-96, -480)
+position = Vector2(30, -150)
 script = ExtResource("8_670o8")
 Bubble = NodePath("Front Bubble")
 Answer = NodePath("Answer")
@@ -113,38 +116,39 @@ DetermineAnswer = NodePath("Determine Answer")
 DisposeAnswer = NodePath("Dispose Answer")
 
 [node name="Front Bubble" type="Sprite2D" parent="Bubble Base/Front Bubble Base"]
+position = Vector2(-108, -334)
 texture = ExtResource("8_ii0lr")
 centered = false
 
 [node name="Front Bubble Emotion" type="Sprite2D" parent="Bubble Base/Front Bubble Base"]
-position = Vector2(105, 122)
+position = Vector2(-3, -212)
 texture = ExtResource("9_1quvv")
 
 [node name="Answer" type="Sprite2D" parent="Bubble Base/Front Bubble Base"]
-position = Vector2(235, 200)
+position = Vector2(127, -134)
 
 [node name="Determine Answer" type="TextureButton" parent="Bubble Base/Front Bubble Base"]
-offset_left = 208.0
-offset_top = 264.0
-offset_right = 256.0
-offset_bottom = 312.0
+offset_left = 100.0
+offset_top = -70.0
+offset_right = 148.0
+offset_bottom = -22.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_5ti38")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Dispose Answer" type="TextureButton" parent="Bubble Base/Front Bubble Base"]
-offset_left = 272.0
-offset_top = 264.0
-offset_right = 320.0
-offset_bottom = 312.0
+offset_left = 164.0
+offset_top = -70.0
+offset_right = 212.0
+offset_bottom = -22.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("9_670o8")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Right Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("Bubble", "Answer", "Emotion", "DetermineAnswer", "DisposeAnswer")]
-position = Vector2(64, -168)
+position = Vector2(70, -35)
 script = ExtResource("8_670o8")
 Bubble = NodePath("Right Bubble")
 Answer = NodePath("Answer")
@@ -153,35 +157,52 @@ DetermineAnswer = NodePath("Determine Answer")
 DisposeAnswer = NodePath("Dispose Answer")
 
 [node name="Right Bubble" type="Sprite2D" parent="Bubble Base/Right Bubble Base"]
+position = Vector2(-10, -114)
 texture = ExtResource("12_j8vxa")
 centered = false
 
 [node name="Right Bubble Emotion" type="Sprite2D" parent="Bubble Base/Right Bubble Base"]
-position = Vector2(230, 104)
+position = Vector2(220, -10)
 texture = ExtResource("13_2e6j2")
 
 [node name="Answer" type="Sprite2D" parent="Bubble Base/Right Bubble Base"]
-position = Vector2(141, 249)
+position = Vector2(131, 135)
 
 [node name="Determine Answer" type="TextureButton" parent="Bubble Base/Right Bubble Base"]
-offset_left = 112.0
-offset_top = 312.0
-offset_right = 160.0
-offset_bottom = 360.0
+offset_left = 102.0
+offset_top = 198.0
+offset_right = 150.0
+offset_bottom = 246.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_5ti38")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Dispose Answer" type="TextureButton" parent="Bubble Base/Right Bubble Base"]
-offset_left = 176.0
-offset_top = 312.0
-offset_right = 224.0
-offset_bottom = 360.0
+offset_left = 166.0
+offset_top = 198.0
+offset_right = 214.0
+offset_bottom = 246.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("9_670o8")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="Normal Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("Bubble", "Emotion")]
+position = Vector2(0, -152)
+script = ExtResource("8_670o8")
+Bubble = NodePath("Normal Bubble")
+Emotion = NodePath("Normal Bubble Emotion")
+
+[node name="Normal Bubble" type="Sprite2D" parent="Bubble Base/Normal Bubble Base"]
+position = Vector2(-101, -152)
+texture = ExtResource("14_670o8")
+centered = false
+
+[node name="Normal Bubble Emotion" type="Sprite2D" parent="Bubble Base/Normal Bubble Base"]
+position = Vector2(2, -81)
+scale = Vector2(0.5334928, 0.5334928)
+texture = ExtResource("11_670o8")
 
 [node name="Interaction Base" type="Control" parent="." node_paths=PackedStringArray("InteractContainer")]
 layout_mode = 3

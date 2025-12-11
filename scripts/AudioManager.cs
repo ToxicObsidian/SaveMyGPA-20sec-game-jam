@@ -18,13 +18,15 @@ public partial class AudioManager : Node
     protected int SFXBusCount = 8;
     [ExportGroup("Tracks")]
     [Export]
-    protected Godot.Collections.Dictionary<string, AudioStream> BGMTracks = new();
+    protected Godot.Collections.Dictionary<string, AudioStream> BGMTracks;
     [Export]
-    protected Godot.Collections.Dictionary<string, AudioStream> SFXTracks = new();
+    protected Godot.Collections.Dictionary<string, AudioStream> SFXTracks;
 
     protected AudioStreamPlayer _bgm_player;
     protected List<AudioStreamPlayer> _sfx_players = new();
     protected AudioStream _current_bgm = null;
+
+    protected float _prev_bgm_volume = 0.0f;
 
     public override void _Ready()
     {
@@ -93,7 +95,32 @@ public partial class AudioManager : Node
         _bgm_player.StreamPaused = false;
     }
 
-
+    public void FadeOutCurrentBGM(float fade_out_time)
+    {
+        Tween _fade_out = CreateTween();
+        _fade_out.TweenMethod(
+            Callable.From<float>(
+                (v) =>
+                {
+                    _bgm_player.VolumeLinear = v;
+                }
+            ),
+            1.0f,
+            0.0f,
+            fade_out_time
+        )
+        .SetTrans(Tween.TransitionType.Linear)
+        .SetEase(Tween.EaseType.Out);
+        _fade_out.TweenCallback(
+            Callable.From(
+                () =>
+                {
+                    _bgm_player.VolumeLinear = 1.0f;
+                    _bgm_player.Stop();
+                }
+            )
+        );
+    }
 
     public void SetMasterVolume(float volume)
     {

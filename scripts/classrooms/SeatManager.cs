@@ -76,6 +76,7 @@ public partial class SeatManager : Node2D
 
     protected Node2D _seat_anchor = null;
     protected List<List<SeatController>> _seat_matrix = new();
+    protected List<SeatController> _replyables = new();
 
     public override void _Ready()
     {
@@ -140,7 +141,7 @@ public partial class SeatManager : Node2D
         Vector2I player_coord,
 
         List<List<Tuple<Texture2D, Texture2D, Texture2D>>> classmate_textures,
-        Dictionary<SeatController.SeatType, List<Tuple<Texture2D, Texture2D, Texture2D, bool>>> classmate_answers,
+        Dictionary<SeatController.SeatType, List<Tuple<Texture2D, Texture2D, Texture2D, Vector2, bool>>> classmate_answers,
 
         int total_question_count,
         int hide_question_count
@@ -168,6 +169,7 @@ public partial class SeatManager : Node2D
                 // 3. Set the answers
                 if (cur_seat.Replyable)
                 {
+                    _replyables.Add(cur_seat);
                     await cur_seat.SetupSeat(total_question_count, hide_question_count);
                     cur_seat.OnDeterminedAnswer += _OnClassmateDeterminedAnswer;
                     paper.PaperFirstFlipped += cur_seat.Interaction.SetAllButtonVisible;
@@ -259,5 +261,9 @@ public partial class SeatManager : Node2D
     protected void _OnClassmateDeterminedAnswer(SeatController.SeatType type, int question_index)
     {
         EmitSignal(SignalName.OnDeterminedAnswer, (int)type, question_index);
+        for (int i = 0; i < _replyables.Count; i++)
+        {
+            if (_replyables[i].Type != type) _replyables[i].NotifyCloseBubble(question_index);
+        }
     }
 }

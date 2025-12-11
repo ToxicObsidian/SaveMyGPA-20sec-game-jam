@@ -18,6 +18,12 @@ public partial class PaperController : Sprite2D
     [Export]
     public VBoxContainer Back { get; set; }
 
+    [Export]
+    public int ContainerSpacing
+    {
+        get { return _container_spacing; }
+        set { _container_spacing = value; _UpdateContainerSpacing(); }
+    }
 
     public bool Side
     {
@@ -30,13 +36,22 @@ public partial class PaperController : Sprite2D
     protected bool _paper_side = true; // true = front, false = back
     protected List<QuestionController> _questions = new();
     protected int _hide_count = 0;
+    protected int _container_spacing = 15;
 
     public override void _Ready()
     {
         FrontFlip.GuiInput += _OnFlipPressed;
         BackFlip.GuiInput += _OnFlipPressed;
         _UpdatePaperSide();
+        _UpdateContainerSpacing();
     }
+
+    public QuestionController GetQC(int index)
+    {
+        if (index < 0 || index >= _questions.Count) return null;
+        return _questions[index];
+    }
+
 
     public async Task SetupQCs(PackedScene qc_scene, int total_count, int hide_count)
     {
@@ -55,6 +70,23 @@ public partial class PaperController : Sprite2D
             if ((i + 1) % GameManager.Instance.BatchLPF == 0)
                 await ToSignal(GameManager.Instance.GameRoot.GetTree(), SceneTree.SignalName.ProcessFrame);
         }
+    }
+    public void QCSetup(
+        int index, 
+        Texture2D question_texture, 
+        List<Texture2D> answer_textures, 
+        Vector2 oqa_position, 
+        bool display_answers,
+        bool vertical_layout
+    )
+    {
+        if (index < 0 || index >= _questions.Count)
+        {
+            GD.PrintErr($"Cannot set QC #{index}, out of range.");
+            return;
+        }
+        _questions[index].Setup(question_texture, answer_textures, oqa_position, display_answers);
+        _questions[index].VerticalAnswerLayout = vertical_layout;
     }
     public void SetOnQuestionAnswerTexture(int index, Texture2D oqa_texture, Vector2 oqa_scale)
     {
@@ -95,5 +127,11 @@ public partial class PaperController : Sprite2D
         BackFlip.Visible = !_paper_side;
 
         FlipH = !_paper_side;
+    }
+    protected void _UpdateContainerSpacing()
+    {
+        if (!IsInsideTree()) return;
+        Front.AddThemeConstantOverride("seperation", _container_spacing);
+        Back.AddThemeConstantOverride("seperation", _container_spacing);
     }
 }

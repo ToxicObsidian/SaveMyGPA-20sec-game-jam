@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://budia60tn556e" path="res://scenes/prefabs/start_menu/about.tscn" id="1_p77by"]
 [ext_resource type="Script" uid="uid://bbyprt0g4hbfl" path="res://scripts/start_menu/StartMenu.cs" id="1_py75a"]
-[ext_resource type="Texture2D" uid="uid://d8c1qy4rwmn3" path="res://resources/images/classroom/classic/教室2 草图.jpg" id="2_qhw2v"]
+[ext_resource type="Texture2D" uid="uid://xsh05ucjrd68" path="res://resources/images/start_menu/bg.png" id="2_qhw2v"]
 [ext_resource type="PackedScene" uid="uid://dlincb5bjuh2y" path="res://scenes/prefabs/start_menu/settings.tscn" id="4_qhw2v"]
 
 [node name="StartMenu" type="Node2D" node_paths=PackedStringArray("StartGameBtn", "QuitGameBtn", "AboutBtn", "SettingsBtn", "AboutPage", "SettingsPage")]

@@ -49,7 +49,7 @@ public partial class ClassroomManager : Node2D
 		}
 	}
 
-    protected Node2D _teacher_base;
+    protected TeacherController _teacher_base;
     protected LevelState _level_state = LevelState.Created;
 
 	// Loading Stages
@@ -58,8 +58,8 @@ public partial class ClassroomManager : Node2D
 	protected int _loading_cur_index = 0;
 	protected int _loading_total_index = 0;
 
-	// Classmate answers
-	protected Dictionary<SeatController.SeatType, List<Tuple<Texture2D, bool>>> _classmate_answers = new();
+	// Classmate answers (OQA Texture, OQA Scale, correctness)
+	protected Dictionary<SeatController.SeatType, List<Tuple<Texture2D, Vector2, bool>>> _classmate_answers = new();
 	protected List<SeatController.SeatType> _populated_answers = new();
 	protected List<float> _points = new();
 
@@ -72,15 +72,19 @@ public partial class ClassroomManager : Node2D
         Vector2I player_coord,
 
 		// Teacher
-        Node2D teacher_base,
+        TeacherController teacher_base,
 		Vector2 matrix_margin_topdown,
 		
 		// Classmate textures (body, hair, outfit)
 		List<List<Tuple<Texture2D, Texture2D, Texture2D>>> classmate_textures,
 
-        // Answers (answer, emotion, OQA, correctness)
+        // Paper
 		PackedScene question_controller_scene,
-        Dictionary<SeatController.SeatType, List<Tuple<Texture2D, Texture2D, Texture2D, bool>>> classmate_answers,
+		// Questions (question, answers, OQA position, question type)
+		List<Tuple<Texture2D, List<Texture2D>, Vector2, QuestionType, bool>> qc_setup_info,
+
+        // Answers (answer, emotion, OQA, OQA Scale, correctness)
+        Dictionary<SeatController.SeatType, List<Tuple<Texture2D, Texture2D, Texture2D, Vector2, bool>>> classmate_answers,
 		int total_question_counts,
 		int hide_question_counts,
 		List<float> question_points
@@ -119,22 +123,41 @@ public partial class ClassroomManager : Node2D
 
 		// 3. Load paper.
 		_NextLoadingStage("Loading paper");
-		// 3.1 Store paper info
 		_populated_answers.Clear();
 		_classmate_answers.Clear();
 		_points.Clear();
+
+        await Paper.SetupQCs(question_controller_scene, total_question_counts, hide_question_counts);
         for (int i = 0; i < total_question_counts; i++)
 		{
-			_populated_answers.Add(SeatController.SeatType.Normal);
+            // Initialize user choice info.
+            _populated_answers.Add(SeatController.SeatType.Normal);
 			_points.Add(question_points[i]);
+
+			// Store classmate answers
 			foreach (var type in classmate_answers.Keys)
 			{
 				if (!_classmate_answers.ContainsKey(type)) _classmate_answers[type] = new();
-				_classmate_answers[type].Add(new Tuple<Texture2D, bool>(classmate_answers[type][i].Item3, classmate_answers[type][i].Item4));
+				var ans_tuple = classmate_answers[type][i];
+				_classmate_answers[type].Add(
+					new Tuple<Texture2D, Vector2, bool>(
+						ans_tuple.Item3,
+                        ans_tuple.Item4,
+						ans_tuple.Item5
+				));
 			}
+
+			// Setup QC Textures
+			var setup_info = qc_setup_info[i];
+			Paper.QCSetup(
+				i,
+                setup_info.Item1,
+                setup_info.Item2,
+                setup_info.Item3,
+                setup_info.Item4 == QuestionType.MultiChoice,
+                setup_info.Item5
+			);
         }
-		// 3.2 Set the PaperController
-		await Paper.SetupQCs(question_controller_scene, total_question_counts, hide_question_counts);
 
 		// 4. Load Teacher
 		_NextLoadingStage("Loading teacher");
@@ -155,6 +178,8 @@ public partial class ClassroomManager : Node2D
 		Seats.Player.OnPaperCollected += StopGame;
 		EndGame.OnRequestTryAgain += () => { EmitSignal(SignalName.ClassroomFinished, true); };
 		EndGame.OnRequestBackToMenu += () => { EmitSignal(SignalName.ClassroomFinished, false); };
+
+		await Task.Delay(2000);
         State = LevelState.OK;
 	}
 
@@ -216,7 +241,8 @@ public partial class ClassroomManager : Node2D
 			var pseat = _populated_answers[i];
             if (pseat != SeatController.SeatType.Normal && pseat != SeatController.SeatType.Player)
 			{
-				result += _classmate_answers[pseat][i].Item2 ? _points[i] : 0;
+				result += _classmate_answers[pseat][i].Item3 ? _points[i] : 0;
+				GD.Print($"Question from {pseat.ToString()} got {_classmate_answers[pseat][i]}, current score = {result}");
 			}
 		}
 		return result;
@@ -233,6 +259,7 @@ public partial class ClassroomManager : Node2D
         }
         return (cur_points / total_points) > ratio;
 	}
+
 
     protected void _InitLoading(int total_stages)
 	{
@@ -281,9 +308,12 @@ public partial class ClassroomManager : Node2D
 		_populated_answers[question_index] = type;
 
 		// Set answer to the paper.
-		var _populated_texture = _classmate_answers[type][question_index].Item1;
-		Paper.SetOnQuestionAnswerTexture(question_index, _populated_texture, Vector2.One);
+		var determined_ans_tuple = _classmate_answers[type][question_index];
+		Paper.SetOnQuestionAnswerTexture(question_index, determined_ans_tuple.Item1, determined_ans_tuple.Item2);
 
+		// Disable all buttons to this question.
 		Seats.SetInteractionButtonDisabled(true, question_index);
+		// Play SFX
+		AudioManager.Instance.PlaySFX("write_answer");
 	}
 }

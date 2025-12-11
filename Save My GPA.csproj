@@ -9,6 +9,7 @@
     <Folder Include="scenes\prefabs\classrooms\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ZLinq" Version="1.5.4" />
     <PackageReference Include="ZLinq.Godot" Version="1.5.4" />
   </ItemGroup>
 </Project>

@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cv0wprsmlp8iy"]
+[gd_scene load_steps=10 format=3 uid="uid://cv0wprsmlp8iy"]
 
 [ext_resource type="Script" uid="uid://b5f8hyt22u6fx" path="res://scripts/classrooms/ClassroomManager.cs" id="1_1swyg"]
-[ext_resource type="Texture2D" uid="uid://d8c1qy4rwmn3" path="res://resources/images/classroom/classic/教室2 草图.jpg" id="2_p3ait"]
+[ext_resource type="Texture2D" uid="uid://b158klwugl65s" path="res://resources/images/classroom/classic/classroom_base.jpg" id="2_hmqsk"]
 [ext_resource type="Script" uid="uid://crvfnanga5wjv" path="res://scripts/classrooms/TeacherPathController.cs" id="3_1swyg"]
 [ext_resource type="Script" uid="uid://cchhpwolgqqop" path="res://scripts/classrooms/SeatManager.cs" id="4_p3ait"]
 [ext_resource type="Script" uid="uid://cqu65p1xjawuj" path="res://scripts/classrooms/PaperController.cs" id="6_2i0y1"]
 [ext_resource type="Texture2D" uid="uid://c00urx1liodtu" path="res://resources/images/paper/bg/classic_bg.png" id="6_hmqsk"]
+[ext_resource type="Texture2D" uid="uid://can3rxx6wnh2v" path="res://resources/images/paper/questions/t_title.png" id="7_47j0g"]
 [ext_resource type="PackedScene" uid="uid://m0pohxvskw4v" path="res://scenes/prefabs/end_game/end_game_settlement.tscn" id="9_flsyq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmqsk"]
@@ -18,7 +19,7 @@ Paper = NodePath("Paper")
 EndGame = NodePath("End Game Settlement")
 
 [node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("2_p3ait")
+texture = ExtResource("2_hmqsk")
 centered = false
 
 [node name="teacher_path" type="Node2D" parent="." node_paths=PackedStringArray("path_line", "path_follow")]
@@ -42,7 +43,7 @@ MarginBottom = 60.0
 
 [node name="Paper" type="Sprite2D" parent="." node_paths=PackedStringArray("FrontFlip", "BackFlip", "Front", "Back")]
 z_index = 10
-position = Vector2(1607.9999, 536)
+position = Vector2(1616, 544)
 texture = ExtResource("6_hmqsk")
 script = ExtResource("6_2i0y1")
 FrontFlip = NodePath("Front Flip")
@@ -81,11 +82,21 @@ grow_vertical = 0
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hmqsk")
 
+[node name="Title" type="TextureRect" parent="Paper"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -240.0
+offset_top = -512.0
+offset_right = -350.0
+offset_bottom = -415.0
+grow_horizontal = 2
+texture = ExtResource("7_47j0g")
+
 [node name="Content Area" type="Control" parent="Paper"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -279.99988
-offset_top = -496.0
+offset_top = -384.0
 offset_right = 280.00012
 offset_bottom = 488.0
 

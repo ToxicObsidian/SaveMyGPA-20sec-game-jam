@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using ZLinq;
 
 [GlobalClass]
 public partial class ClassroomStock : Resource
@@ -11,11 +11,12 @@ public partial class ClassroomStock : Resource
     public Array<ClassroomStockItem> Items { get; protected set; }
 
 
-    public ClassroomStockItem GetRandomOne(Array<string> excluded_names)
+    public ClassroomStockItem GetRandomOne(List<string> excluded_names)
     {
         var excluded_set = new HashSet<string>(excluded_names);
 
         var valid_set = Items
+            .AsValueEnumerable()
             .Where(item => item != null && !excluded_set.Contains(item.ClassroomName))
             .ToList();
 

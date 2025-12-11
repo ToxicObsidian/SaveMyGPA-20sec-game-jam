@@ -37,6 +37,7 @@ public partial class SeatController : Node2D
 	protected int _answer_count = 0;
 	protected List<Texture2D> _answer_textures = new();
 	protected List<Texture2D> _answer_emotions = new();
+	protected List<Vector2> _answer_scales = new();
 	protected List<bool> _answer_correctness = new();
 	protected bool _right_collect = true;
 
@@ -49,6 +50,7 @@ public partial class SeatController : Node2D
 		get { return _right_collect; }
 		set { _right_collect = value; }
 	}
+	public bool IsSpecialCharacter { get; set; } = false;
 
 	[Export]
 	public SeatType Type { get; set; }
@@ -94,6 +96,10 @@ public partial class SeatController : Node2D
 		LeftBubble.Visible = false;
 		RightBubble.Visible = false;
 		FrontBubble.Visible = false;
+		NormalBubble.Visible = false;
+
+		// Prevent from being blocked by other normal bubbles.
+		if (Replyable) _CurrentBubble.ZIndex += 1;
     }
 
 	public async Task SetupSeat(
@@ -114,19 +120,32 @@ public partial class SeatController : Node2D
 	}
 
 
-	public void SetAnswers(List<Tuple<Texture2D, Texture2D, Texture2D, bool>> answers)
+	public void SetAnswers(List<Tuple<Texture2D, Texture2D, Texture2D, Vector2, bool>> answers)
 	{
 		_answer_count = answers.Count;
 		_answer_textures.Clear();
 		_answer_emotions.Clear();
-		_answer_correctness.Clear();
+        _answer_scales.Clear();
+        _answer_correctness.Clear();
 		for (int i = 0; i < _answer_count; i++)
 		{
 			var answer = answers[i];
 			_answer_textures.Add(answer.Item1);
 			_answer_emotions.Add(answer.Item2);
-			_answer_correctness.Add(answer.Item4);
+			_answer_scales.Add(answer.Item4);
+			_answer_correctness.Add(answer.Item5);
 		}
+	}
+	public void NotifyCloseBubble(int question_index)
+	{
+		if (question_index != _current_answer) return;
+        _current_answer = -1;
+        _EaseCurrentBubble(1.0f, 0.0f, 0.25f, false);
+        Interaction.Visible = true;
+    }
+	public void SetNormalBubbleEmotion(Texture2D emotion)
+	{
+		NormalBubble.Emotion.Texture = emotion;
 	}
 
 
@@ -148,7 +167,8 @@ public partial class SeatController : Node2D
 
 		// 2. Show the bubble.
 		_ShowAnswer(question_index);
-	}
+        AudioManager.Instance.PlaySFX("show_bubble");
+    }
 
 	protected void _OnQuerySubmitBubble()
 	{
@@ -166,10 +186,11 @@ public partial class SeatController : Node2D
 
 		// 2. Hide the bubble.
 		_current_answer = -1;
-		_CurrentBubble.Visible = false;
+        _EaseCurrentBubble(1.0f, 0.0f, 0.25f, false);
+		AudioManager.Instance.PlaySFX("hide_bubble");
 
-		// 3. Show the interaction area.
-		Interaction.Visible = true;
+        // 3. Show the interaction area.
+        Interaction.Visible = true;
     }
 
 
@@ -182,19 +203,44 @@ public partial class SeatController : Node2D
 
 		// 1. Hide the bubble.
 		_current_answer = -1;
-		_CurrentBubble.Visible = false;
+        _EaseCurrentBubble(1.0f, 0.0f, 0.25f, false);
+        AudioManager.Instance.PlaySFX("hide_bubble");
 
-		// 2. Show the interaction area.
-		Interaction.Visible = true;
+        // 2. Show the interaction area.
+        Interaction.Visible = true;
     }
 
+	
 	protected void _ShowAnswer(int index)
 	{
 		_current_answer = index;
 		_CurrentBubble.Answer.Texture = _answer_textures[index];
+		_CurrentBubble.Answer.Scale = _answer_scales[index];
 		_CurrentBubble.Emotion.Texture = _answer_emotions[index];
 		_CurrentBubble.Visible = true;
+
+		_EaseCurrentBubble(0, 1, 0.25f);		// Ease in
 	}
+
+
+	protected void _EaseCurrentBubble(float r_in, float r_out, float duration, bool visible_after_ease = true)
+	{
+        var _tween = CreateTween();
+        _tween.TweenMethod(
+            Callable.From<float>(
+                (ratio) =>
+                {
+					_CurrentBubble.Scale = Vector2.One * ratio;
+                }
+            ),
+            r_in,
+            r_out,
+            duration
+        ).SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+		_tween.TweenCallback(
+			Callable.From(() => { _CurrentBubble.Visible = visible_after_ease; })
+		);
+    }
 
 
 	protected void _OnPaperCollected(Area2D area)
@@ -204,5 +250,37 @@ public partial class SeatController : Node2D
 		// Do something.
 		EmitSignal(SignalName.OnPaperCollected);
 		if (Replyable) Interaction.SetAllButtonsDisabled(true);
+		else _ShowNormalBubble(0.3f, 2.5);
 	}
+	protected void _ShowNormalBubble(float chance, double duration)
+	{
+		if (new Random().NextSingle() >= chance && !IsSpecialCharacter) return;
+
+		var _tween = CreateTween();
+		_tween.TweenCallback(Callable.From(() => { _CurrentBubble.Visible = true; }));
+        _tween.TweenMethod(
+            Callable.From<float>(
+                (ratio) =>
+                {
+                    _CurrentBubble.Scale = Vector2.One * ratio;
+                }
+            ),
+            0.0f,
+            1.0f,
+            0.25
+        ).SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+		_tween.TweenInterval(duration);
+        _tween.TweenMethod(
+            Callable.From<float>(
+                (ratio) =>
+                {
+                    _CurrentBubble.Scale = Vector2.One * ratio;
+                }
+            ),
+            1.0f,
+            0.0f,
+            0.25
+        ).SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+        _tween.TweenCallback(Callable.From(() => { _CurrentBubble.Visible = false; }));
+    }
 }

@@ -29,7 +29,7 @@ LoadingOverlay = NodePath("LoadingOverlay")
 LoadingProgressBar = NodePath("LoadingOverlay/Center/Loading Progress")
 TipsLabel = NodePath("LoadingOverlay/Center/Tips")
 LoadingItemLabel = NodePath("LoadingOverlay/Center/Loading Item")
-StockTips = Array[String](["Tips: Your classmates may not give you the proper answer.", "Tips: You have to fill the blanks before teacher collects your paper.", "Tips: This is the classic mode."])
+StockTips = Array[String](["Tips: Your classmates may not give you the correct answer.", "Tips: You have to fill the blanks before teacher collects your paper.", "Tips: Click the buttons above your classmates to interact with them."])
 
 [node name="LoadingOverlay" type="Control" parent="."]
 z_index = 100

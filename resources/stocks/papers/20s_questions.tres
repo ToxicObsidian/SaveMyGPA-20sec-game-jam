@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Questions" load_steps=18 format=3 uid="uid://dxdp3fk50xjga"]
+
+[ext_resource type="Resource" uid="uid://d04jdaexcgy6b" path="res://resources/stocks/papers/q_mc_t1.tres" id="1_syghp"]
+[ext_resource type="Resource" uid="uid://bnq8x1ac8vwo4" path="res://resources/stocks/papers/Common Wrong Answers/cwa_1.tres" id="1_xd34x"]
+[ext_resource type="Resource" uid="uid://d1tk674fi7oo5" path="res://resources/stocks/papers/q_mc_t2.tres" id="2_757mb"]
+[ext_resource type="Resource" uid="uid://b1kn4vpa0q5h3" path="res://resources/stocks/papers/Common Wrong Answers/cwa_2.tres" id="2_rt8dq"]
+[ext_resource type="Resource" uid="uid://c3iy5f8pult2e" path="res://resources/stocks/papers/Common Wrong Answers/cwa_3.tres" id="3_363c1"]
+[ext_resource type="Resource" uid="uid://dfw3qr6t2ugfm" path="res://resources/stocks/papers/q_mc_t3.tres" id="3_k5vhx"]
+[ext_resource type="Resource" uid="uid://wfm08cxt368e" path="res://resources/stocks/papers/Common Wrong Answers/cwa_4.tres" id="4_0kjbq"]
+[ext_resource type="Resource" uid="uid://ccnuj3jo6kitb" path="res://resources/stocks/papers/q_tf_t1.tres" id="4_vp47u"]
+[ext_resource type="Resource" uid="uid://ciqxv4qcvwg4g" path="res://resources/stocks/papers/Common Wrong Answers/cwa_5.tres" id="5_1eag1"]
+[ext_resource type="Resource" uid="uid://bhngio4wiyep2" path="res://resources/stocks/papers/q_tf_t2.tres" id="5_uq0l4"]
+[ext_resource type="Resource" uid="uid://clu3aadrym5f2" path="res://resources/stocks/papers/q_tf_t3.tres" id="6_3akgk"]
+[ext_resource type="Resource" uid="uid://b6xt4aj271nhl" path="res://resources/stocks/papers/Common Wrong Answers/cwa_6.tres" id="6_xjchr"]
+[ext_resource type="Resource" uid="uid://dsnidkin1jrb7" path="res://resources/stocks/papers/Common Wrong Answers/cwa_7.tres" id="7_awd6m"]
+[ext_resource type="Texture2D" uid="uid://cdmpn18hiyeol" path="res://resources/images/paper/icons/strikes/strike_1.png" id="7_vp47u"]
+[ext_resource type="Script" uid="uid://cdwpsqxd610g7" path="res://scripts/resources/classroom/Questions.cs" id="7_wnyql"]
+[ext_resource type="Texture2D" uid="uid://iltrtg1wqeea" path="res://resources/images/paper/icons/strikes/strike_2.png" id="8_uq0l4"]
+[ext_resource type="Texture2D" uid="uid://cai3ydouenyb8" path="res://resources/images/paper/icons/strikes/strike_3.png" id="9_3akgk"]
+
+[resource]
+script = ExtResource("7_wnyql")
+Data = Array[Object]([ExtResource("1_syghp"), ExtResource("2_757mb"), ExtResource("3_k5vhx"), ExtResource("4_vp47u"), ExtResource("5_uq0l4"), ExtResource("6_3akgk")])
+CommonWrongAnswers = Array[Object]([ExtResource("1_xd34x"), ExtResource("2_rt8dq"), ExtResource("3_363c1"), ExtResource("4_0kjbq"), ExtResource("5_1eag1"), ExtResource("6_xjchr"), ExtResource("7_awd6m")])
+Strikes = Array[Texture2D]([ExtResource("7_vp47u"), ExtResource("8_uq0l4"), ExtResource("9_3akgk")])
+metadata/_custom_type_script = "uid://cdwpsqxd610g7"

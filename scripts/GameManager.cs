@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Threading.Tasks;
+using ZLinq;
 
 
 public partial class GameManager : Node
@@ -50,8 +51,24 @@ public partial class GameManager : Node
 
 	public async Task StartGame()
 	{
-		StartLevelInfo sl_info = new StartLevelInfo();
-		sl_info.Duration = Settings.LevelDuration;
+		if (!Settings.IsValid())
+		{
+			GD.Print($"Invalid settings, quit");
+            QuitGame(-1);
+        }
+
+		StartLevelInfo sl_info = new()
+		{
+			Duration = Settings.LevelDuration,
+			ExcludedTags = [],
+
+			Difficulty = Settings.Difficulty,
+			WrongRatio = Settings.DifficultyMap[Settings.Difficulty],
+			ConfusedRatio = Settings.ConfusedMap[Settings.Difficulty],
+			HesitateRatio = Settings.HesitateMap[Settings.Difficulty],
+
+			MaxDifficulty = Settings.DifficultyMap.AsValueEnumerable().Select(kvp => kvp.Key).Order().Reverse().ToList()[0]
+		};
 
 		// Call level manager to start a level.
 		await LevelManager.Instance.StartLevel(sl_info);
@@ -90,13 +107,16 @@ public partial class GameManager : Node
         LevelManager.Instance.SetLoadingScreen(_loading_screen);
     }
 
+
 	public void NotifyLevelStarted()
 	{
 		_start_menu.Visible = false;
+		AudioManager.Instance.PlayBGM("classroom");
 	}
     public void NotifyLevelEnded()
     {
 		_start_menu.Visible = true;
+        AudioManager.Instance.PlayBGM("start_menu");
     }
 
 	public void ForceGC()

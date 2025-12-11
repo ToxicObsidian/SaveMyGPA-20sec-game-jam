@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://p0db6aqikxrr"]
+[gd_scene load_steps=2 format=3 uid="uid://p0db6aqikxrr"]
 
 [ext_resource type="Script" uid="uid://djh0ktw5qork4" path="res://scripts/classrooms/QuestionController.cs" id="1_7awpa"]
-[ext_resource type="Texture2D" uid="uid://bmgeli4qd2jcg" path="res://resources/images/paper/questions/classic/MultiChoices/t1/c_mc_t1_q.png" id="2_7awpa"]
 
-[node name="Question Base" type="VBoxContainer" node_paths=PackedStringArray("QuestionRect", "OnQuestionAnswerRect", "AnswerLayoutContainer", "QASpacing", "QAOffset")]
+[node name="Question Base" type="VBoxContainer" node_paths=PackedStringArray("QuestionRect", "OnQuestionAnswerAnchor", "OnQuestionAnswerRect", "AnswerLayoutContainer", "QASpacing", "QAOffset")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 390.0
@@ -13,27 +12,29 @@ size_flags_vertical = 0
 theme_override_constants/separation = 0
 script = ExtResource("1_7awpa")
 QuestionRect = NodePath("Question")
-OnQuestionAnswerRect = NodePath("Question/On Question Answer")
+OnQuestionAnswerAnchor = NodePath("Question/OQA Anchor")
+OnQuestionAnswerRect = NodePath("Question/OQA Anchor/On Question Answer")
 AnswerLayoutContainer = NodePath("Answer Layout Container")
 QASpacing = NodePath("Spacing")
 QAOffset = NodePath("Answer Layout Container/Offset")
-Spacing = 50.0
+Offset = 60.0
+Spacing = 20.0
 
 [node name="Question" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_7awpa")
 stretch_mode = 4
 
-[node name="On Question Answer" type="TextureRect" parent="Question"]
+[node name="OQA Anchor" type="Node2D" parent="Question"]
+
+[node name="On Question Answer" type="TextureRect" parent="Question/OQA Anchor"]
 visible = false
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 expand_mode = 1
-stretch_mode = 3
+stretch_mode = 5
 
 [node name="Spacing" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="Answer Layout Container" type="HBoxContainer" parent="."]
@@ -41,4 +42,5 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Offset" type="Control" parent="Answer Layout Container"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2

@@ -30,13 +30,15 @@ public partial class ClassroomStockItem: Resource
     [Export]
     public ClassmateData Classmates { get; set; }
     [Export]
-    public Array<QuestionData> Questions { get; set; }
+    public Questions Questions { get; set; }
     [Export]
     public PackedScene ClassroomScene { get; set; }
     [Export]
     public PackedScene SeatSuite { get; set; }
     [Export]
     public PackedScene Teacher { get; set; }
+    [Export]
+    public PackedScene QuestionLayout { get; set; }
 
 
 

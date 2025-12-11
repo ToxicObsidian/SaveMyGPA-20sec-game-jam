@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
+using ZLinq;
 using System;
-
 
 /// <summary>
 /// The type of the questions.
@@ -34,13 +34,11 @@ public partial class QuestionData : Resource
     [Export]
     public Array<AnswerTextureBundle> WrongAnswerOptions { get; set; }
     [Export]
-    public Array<Texture2D> HesitateAnswers { get; set; }
-    [Export]
     public AnswerTextureBundle CorrectAnswer { get; set; }
     [Export]
     public Vector2 OnQuestionAnswerPosition { get; set; }
     [Export]
-    public float OnQuestionAnswerScale { get; set; } = 1.0f;
+    public bool VerticalLayout { get; set; } = false;
 
     [ExportSubgroup("Meta")]
     [Export]
@@ -53,10 +51,13 @@ public partial class QuestionData : Resource
         if (QuestionTexture == null) return false;
         foreach (var wrong in WrongAnswerOptions) if (wrong == null || !wrong.IsValid()) return false;
         if (CorrectAnswer == null || !CorrectAnswer.IsValid()) return false;
-        if (HesitateAnswers != null) foreach (var hesitate in HesitateAnswers) if (hesitate == null) return false;
 
 
         return true;
     }
 
+    public System.Collections.Generic.List<AnswerTextureBundle> AllTextures()
+    {
+        return WrongAnswerOptions.AsValueEnumerable().Prepend(CorrectAnswer).ToList();
+    }
 }

@@ -1,11 +1,12 @@
-[gd_resource type="Resource" script_class="ClassroomStockItem" load_steps=9 format=3 uid="uid://do2d62jwp1ske"]
+[gd_resource type="Resource" script_class="ClassroomStockItem" load_steps=10 format=3 uid="uid://do2d62jwp1ske"]
 
 [ext_resource type="Script" uid="uid://c7dvvwmxkyjjn" path="res://scripts/resources/classroom/ClassroomStockItem.cs" id="1_b0ml2"]
-[ext_resource type="Resource" uid="uid://bjwcdfb2kht1s" path="res://resources/stocks/classroom/classic/20s_classmates.tres" id="1_e0pxu"]
+[ext_resource type="Resource" uid="uid://bjwcdfb2kht1s" path="res://resources/stocks/characters/20s_classmates.tres" id="1_e0pxu"]
 [ext_resource type="PackedScene" uid="uid://cv0wprsmlp8iy" path="res://scenes/prefabs/classrooms/classroom_20s_classic.tscn" id="2_y3rp6"]
 [ext_resource type="Script" uid="uid://bhsyljcktdjj8" path="res://scripts/resources/classroom/ClassroomMatrixSettings.cs" id="3_2tnu6"]
-[ext_resource type="Resource" uid="uid://d04jdaexcgy6b" path="res://resources/stocks/papers/q_t1.tres" id="4_3rjb1"]
+[ext_resource type="PackedScene" uid="uid://p0db6aqikxrr" path="res://scenes/prefabs/classrooms/question.tscn" id="4_fickf"]
 [ext_resource type="PackedScene" uid="uid://clww78mdh8vk4" path="res://scenes/prefabs/classrooms/seat.tscn" id="5_t5rae"]
+[ext_resource type="Resource" uid="uid://dxdp3fk50xjga" path="res://resources/stocks/papers/20s_questions.tres" id="5_y3rp6"]
 [ext_resource type="PackedScene" uid="uid://bncs16s8dsd86" path="res://scenes/prefabs/classrooms/teacher.tscn" id="6_ikyau"]
 
 [sub_resource type="Resource" id="Resource_fickf"]
@@ -22,8 +23,9 @@ script = ExtResource("1_b0ml2")
 ClassroomName = "classic_classroom"
 Matrices = Array[Object]([SubResource("Resource_fickf")])
 Classmates = ExtResource("1_e0pxu")
-Questions = Array[Object]([ExtResource("4_3rjb1")])
+Questions = ExtResource("5_y3rp6")
 ClassroomScene = ExtResource("2_y3rp6")
 SeatSuite = ExtResource("5_t5rae")
 Teacher = ExtResource("6_ikyau")
+QuestionLayout = ExtResource("4_fickf")
 metadata/_custom_type_script = "uid://c7dvvwmxkyjjn"

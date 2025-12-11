@@ -1,16 +1,16 @@
 using Godot;
-using Godot.Collections;
 using System;
+using System.Collections.Generic;
 
-// This struct will be generated and populated by GameManager, no need for setting this to GlobalClass
-public partial class StartLevelInfo : Resource
+public class StartLevelInfo
 {
-    [Export]
     public float Duration { get; set; } = 20.0f;
-
-    [Export]
     public SupportedClassroomType Type { get; set; } = SupportedClassroomType.Classic;
+    public List<string> ExcludedTags { get; set; } = new();
 
-    [Export]
-    public Dictionary<string, string> ExcludedTags { get; set; } = new();
+    public int Difficulty { get; set; }
+    public float WrongRatio { get; set; }
+    public float ConfusedRatio { get; set; }
+    public float HesitateRatio { get; set; }
+    public int MaxDifficulty { get; set; }
 }

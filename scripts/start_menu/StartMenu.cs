@@ -4,13 +4,13 @@ public partial class StartMenu : Node2D
 {
 	[ExportGroup("Buttons")]
 	[Export]
-	public Button StartGameBtn { get; set; }
+	public BaseButton StartGameBtn { get; set; }
 	[Export]
-	public Button QuitGameBtn { get; set; }
+	public BaseButton QuitGameBtn { get; set; }
 	[Export]
-	public Button AboutBtn { get; set; }
+	public BaseButton AboutBtn { get; set; }
 	[Export]
-	public Button SettingsBtn { get; set; }
+	public BaseButton SettingsBtn { get; set; }
 
 	[ExportGroup("Prefabs")]
 	[Export]
@@ -25,11 +25,15 @@ public partial class StartMenu : Node2D
 		QuitGameBtn.Pressed += OnQuitBtnPressed;
 		AboutBtn.Pressed += OnAboutBtnPressed;
 		SettingsBtn.Pressed += OnSettingsBtnPressed;
-	}
+
+        AudioManager.Instance.PlayBGM("start_menu");
+    }
 
 
 	protected async void OnStartBtnPressed()
 	{
+        AudioManager.Instance.PlaySFX("start_game");
+		AudioManager.Instance.FadeOutCurrentBGM(1);
 		await GameManager.Instance.StartGame();
 	}
 

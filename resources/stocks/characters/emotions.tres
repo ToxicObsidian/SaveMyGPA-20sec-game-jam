@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Emotions" load_steps=7 format=3 uid="uid://0clpsubvr2x3"]
+
+[ext_resource type="Script" uid="uid://cjv0gbao7fafc" path="res://scripts/resources/classroom/Emotions.cs" id="1_j5l15"]
+[ext_resource type="Texture2D" uid="uid://djf8kenq1nbev" path="res://resources/images/characters/classmates/emotions/思考.png" id="1_npx7l"]
+[ext_resource type="Texture2D" uid="uid://btr7qysx2sj6g" path="res://resources/images/characters/classmates/emotions/伤心.png" id="2_mn3s1"]
+[ext_resource type="Texture2D" uid="uid://djhrmaok6ujk1" path="res://resources/images/characters/classmates/emotions/自信.png" id="3_55jhq"]
+[ext_resource type="Texture2D" uid="uid://c6tfxsawv6ber" path="res://resources/images/characters/classmates/emotions/我有一计.png" id="4_7pxwk"]
+[ext_resource type="Texture2D" uid="uid://hxqw04q5i35j" path="res://resources/images/characters/classmates/emotions/笑哭.png" id="5_k0x4i"]
+
+[resource]
+script = ExtResource("1_j5l15")
+EmotionTextures = Dictionary[int, Texture2D]({
+0: ExtResource("1_npx7l"),
+1: ExtResource("2_mn3s1"),
+2: ExtResource("3_55jhq"),
+3: ExtResource("5_k0x4i"),
+4: ExtResource("4_7pxwk")
+})
+metadata/_custom_type_script = "uid://cjv0gbao7fafc"
