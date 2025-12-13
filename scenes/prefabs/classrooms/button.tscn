@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwfn4ovmd1dr4"]
+
+[ext_resource type="Theme" uid="uid://b48js8wmu75q5" path="res://resources/font/themes/interaction_button_theme.tres" id="1_1fknb"]
+[ext_resource type="Script" uid="uid://cdqk6hjpqxhcd" path="res://scripts/classrooms/InteractionButton.cs" id="1_7dtjr"]
+
+[node name="InteractionButton" type="Button"]
+custom_minimum_size = Vector2(30, 30)
+offset_right = 30.0
+offset_bottom = 31.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_1fknb")
+text = "x"
+script = ExtResource("1_7dtjr")

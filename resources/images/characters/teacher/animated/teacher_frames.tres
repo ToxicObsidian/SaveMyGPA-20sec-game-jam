@@ -1,0 +1,86 @@
+[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://po5wq403sgm2"]
+
+[ext_resource type="Texture2D" uid="uid://bwwfvk4qejy6m" path="res://resources/images/characters/teacher/animated/deprecated/w_00.png" id="1_br8a7"]
+[ext_resource type="Texture2D" uid="uid://c2v4seddx8k7j" path="res://resources/images/characters/teacher/animated/deprecated/w_01.png" id="2_l08c5"]
+[ext_resource type="Texture2D" uid="uid://cyctd8vnjxmx5" path="res://resources/images/characters/teacher/animated/deprecated/w_02.png" id="3_4uq52"]
+[ext_resource type="Texture2D" uid="uid://bjwsicn7nfhex" path="res://resources/images/characters/teacher/animated/deprecated/w_03.png" id="4_8mn55"]
+[ext_resource type="Texture2D" uid="uid://c6ltks0ptstfm" path="res://resources/images/characters/teacher/animated/deprecated/w_04.png" id="5_hgu1j"]
+[ext_resource type="Texture2D" uid="uid://khkch4ry8xb2" path="res://resources/images/characters/teacher/animated/deprecated/w_05.png" id="6_s7n0o"]
+[ext_resource type="Texture2D" uid="uid://cl1htjsbcw3wj" path="res://resources/images/characters/teacher/animated/deprecated/w_06.png" id="7_rkx1e"]
+[ext_resource type="Texture2D" uid="uid://caxglunqnuca0" path="res://resources/images/characters/teacher/animated/deprecated/w_07.png" id="8_wtgjr"]
+[ext_resource type="Texture2D" uid="uid://bs4aoq6sbxioq" path="res://resources/images/characters/teacher/animated/deprecated/w_08.png" id="9_2a3wx"]
+[ext_resource type="Texture2D" uid="uid://c2tymy706lqv6" path="res://resources/images/characters/teacher/animated/deprecated/w_09.png" id="10_bdi0m"]
+[ext_resource type="Texture2D" uid="uid://cxv8nwduguw6h" path="res://resources/images/characters/teacher/animated/deprecated/w_10.png" id="11_evif7"]
+[ext_resource type="Texture2D" uid="uid://dbbdjq6x7gqkd" path="res://resources/images/characters/teacher/animated/deprecated/w_11.png" id="12_r2dg7"]
+[ext_resource type="Texture2D" uid="uid://bclkoeromw0gv" path="res://resources/images/characters/teacher/animated/deprecated/w_12.png" id="13_lklyc"]
+[ext_resource type="Texture2D" uid="uid://c4xst1gfik77b" path="res://resources/images/characters/teacher/animated/deprecated/w_13.png" id="14_502k8"]
+[ext_resource type="Texture2D" uid="uid://2t41kj150h7f" path="res://resources/images/characters/teacher/animated/deprecated/w_14.png" id="15_mk0l4"]
+[ext_resource type="Texture2D" uid="uid://da66fy4n7d1og" path="res://resources/images/characters/teacher/animated/deprecated/w_15.png" id="16_rwcg6"]
+[ext_resource type="Texture2D" uid="uid://di5leatcrjtx3" path="res://resources/images/characters/teacher/animated/deprecated/w_16.png" id="17_l56ct"]
+[ext_resource type="Texture2D" uid="uid://d2j88x5ytfuem" path="res://resources/images/characters/teacher/animated/deprecated/w_17.png" id="18_jwvt8"]
+[ext_resource type="Texture2D" uid="uid://dx634dhq4pf2" path="res://resources/images/characters/teacher/animated/deprecated/w_18.png" id="19_6cy6p"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_br8a7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_l08c5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4uq52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8mn55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hgu1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_s7n0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rkx1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wtgjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2a3wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bdi0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_evif7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_r2dg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lklyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_502k8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_mk0l4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_rwcg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_l56ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_jwvt8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_6cy6p")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]

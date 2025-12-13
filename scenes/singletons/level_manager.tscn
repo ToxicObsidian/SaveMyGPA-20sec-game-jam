@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcdpeqdm11f8d"]
+
+[ext_resource type="Script" uid="uid://dtb0jiodteaaj" path="res://scripts/LevelManager.cs" id="1_toqdr"]
+[ext_resource type="Resource" uid="uid://c4ko63s1axpg7" path="res://resources/stocks/classroom/classic/20s_classrooms.tres" id="2_gbanb"]
+
+[node name="LevelManager" type="Node"]
+script = ExtResource("1_toqdr")
+LoadingSceneEaseType = 1
+LoadingSceneTransitionType = 3
+StockClassrooms = ExtResource("2_gbanb")
+metadata/_custom_type_script = "uid://dtb0jiodteaaj"

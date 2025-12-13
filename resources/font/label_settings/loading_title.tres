@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d1p12nmjpk8q4"]
+
+[ext_resource type="FontFile" uid="uid://dtiedo4k6r1bh" path="res://resources/font/fontfiles/Nygus.otf" id="1_na67x"]
+
+[resource]
+font = ExtResource("1_na67x")
+font_size = 72
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)

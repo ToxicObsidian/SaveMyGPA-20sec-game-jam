@@ -11,8 +11,23 @@ config_version=5
 [application]
 
 config/name="Save My GPA"
-config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/version="0.1.0"
+run/main_scene="uid://b4mq2crqc8rmw"
+config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
+config/icon="uid://b2qvn038w6ceb"
+
+[autoload]
+
+GameManager="*res://scenes/singletons/game_manager.tscn"
+LevelManager="*res://scenes/singletons/level_manager.tscn"
+AudioManager="*res://scenes/singletons/audio_manager.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+window/handheld/orientation=4
 
 [dotnet]
 

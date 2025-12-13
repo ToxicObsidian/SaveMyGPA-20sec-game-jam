@@ -1,0 +1,190 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlincb5bjuh2y"]
+
+[ext_resource type="Script" uid="uid://1eixficcpmks" path="res://scripts/start_menu/Settings.cs" id="1_qotqr"]
+[ext_resource type="PackedScene" uid="uid://dv0q706ei8o3h" path="res://scenes/prefabs/start_menu/difficulty.tscn" id="2_3ir3y"]
+[ext_resource type="LabelSettings" uid="uid://doyt006b1qmie" path="res://resources/font/label_settings/panel_titles.tres" id="2_g834g"]
+[ext_resource type="Texture2D" uid="uid://dlblt6d0b4y7n" path="res://resources/images/UI/Settings/full_screen.png" id="2_kaht5"]
+[ext_resource type="Texture2D" uid="uid://xmcheqraq8du" path="res://resources/images/UI/Settings/windowed.png" id="3_qotqr"]
+[ext_resource type="LabelSettings" uid="uid://bebsqilropa6b" path="res://resources/font/label_settings/panel_item_1.tres" id="3_xc3lv"]
+[ext_resource type="LabelSettings" uid="uid://56c2odtwpfgi" path="res://resources/font/label_settings/panel_desc.tres" id="6_gkkhs"]
+[ext_resource type="LabelSettings" uid="uid://bv510aitn37q0" path="res://resources/font/label_settings/panel_item_2.tres" id="7_4atn5"]
+
+[sub_resource type="Theme" id="Theme_kaht5"]
+HBoxContainer/constants/separation = 16
+
+[node name="Settings" type="Control" node_paths=PackedStringArray("DetectionBG", "WindowedArea", "VolumeMaster", "VolumeSFX", "VolumeBGM")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_qotqr")
+DetectionBG = NodePath("Click Detection BG")
+WindowedArea = NodePath("Panel/Settings Base/VBoxContainer/Windowed/Control")
+VolumeMaster = NodePath("Panel/Settings Base/VBoxContainer/Volume/Master Base/Master/HSlider")
+VolumeSFX = NodePath("Panel/Settings Base/VBoxContainer/Volume/SFX Base/SFX/HSlider")
+VolumeBGM = NodePath("Panel/Settings Base/VBoxContainer/Volume/BGM Base/SFX/HSlider")
+
+[node name="Click Detection BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.19607843)
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(600, 800)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 77.0
+grow_horizontal = 2
+text = "Settings"
+label_settings = ExtResource("2_g834g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings Base" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 100.0
+offset_right = 596.0
+offset_bottom = 796.0
+theme = SubResource("Theme_kaht5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Settings Base"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Windowed" type="HBoxContainer" parent="Panel/Settings Base/VBoxContainer"]
+layout_mode = 2
+
+[node name="Windowed Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Windowed"]
+layout_mode = 2
+text = "Windowed"
+label_settings = ExtResource("3_xc3lv")
+
+[node name="Control" type="Control" parent="Panel/Settings Base/VBoxContainer/Windowed"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Full Window" type="TextureRect" parent="Panel/Settings Base/VBoxContainer/Windowed/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kaht5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Windowed" type="TextureRect" parent="Panel/Settings Base/VBoxContainer/Windowed/Control"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("3_qotqr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Volume" type="VBoxContainer" parent="Panel/Settings Base/VBoxContainer"]
+layout_mode = 2
+
+[node name="Audio Settings Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume"]
+layout_mode = 2
+text = "Audio Settings"
+label_settings = ExtResource("6_gkkhs")
+
+[node name="Master Base" type="HBoxContainer" parent="Panel/Settings Base/VBoxContainer/Volume"]
+layout_mode = 2
+alignment = 1
+
+[node name="Master" type="VBoxContainer" parent="Panel/Settings Base/VBoxContainer/Volume/Master Base"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume/Master Base/Master"]
+layout_mode = 2
+text = "Master"
+label_settings = ExtResource("7_4atn5")
+
+[node name="HSlider" type="HSlider" parent="Panel/Settings Base/VBoxContainer/Volume/Master Base/Master"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFX Base" type="HBoxContainer" parent="Panel/Settings Base/VBoxContainer/Volume"]
+layout_mode = 2
+alignment = 1
+
+[node name="SFX" type="VBoxContainer" parent="Panel/Settings Base/VBoxContainer/Volume/SFX Base"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume/SFX Base/SFX"]
+layout_mode = 2
+text = "SFX"
+label_settings = ExtResource("7_4atn5")
+
+[node name="HSlider" type="HSlider" parent="Panel/Settings Base/VBoxContainer/Volume/SFX Base/SFX"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="BGM Base" type="HBoxContainer" parent="Panel/Settings Base/VBoxContainer/Volume"]
+layout_mode = 2
+alignment = 1
+
+[node name="SFX" type="VBoxContainer" parent="Panel/Settings Base/VBoxContainer/Volume/BGM Base"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume/BGM Base/SFX"]
+layout_mode = 2
+text = "BGM"
+label_settings = ExtResource("7_4atn5")
+
+[node name="HSlider" type="HSlider" parent="Panel/Settings Base/VBoxContainer/Volume/BGM Base/SFX"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Difficulty" type="VBoxContainer" parent="Panel/Settings Base/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Difficulty"]
+layout_mode = 2
+text = "Difficulty"
+label_settings = ExtResource("3_xc3lv")
+
+[node name="Difficulty" parent="Panel/Settings Base/VBoxContainer/Difficulty" instance=ExtResource("2_3ir3y")]
+layout_mode = 2

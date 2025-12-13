@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ClassroomStock" load_steps=3 format=3 uid="uid://c4ko63s1axpg7"]
+
+[ext_resource type="Resource" uid="uid://do2d62jwp1ske" path="res://resources/stocks/classroom/classic/20s_level_stock.tres" id="1_mgb6i"]
+[ext_resource type="Script" uid="uid://hin14ci77xl1" path="res://scripts/resources/classroom/ClassroomStock.cs" id="6_sgldm"]
+
+[resource]
+script = ExtResource("6_sgldm")
+Items = Array[Resource]([ExtResource("1_mgb6i")])

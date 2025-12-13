@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://h1jo7464n0k8"]
+
+[ext_resource type="FontFile" uid="uid://dtiedo4k6r1bh" path="res://resources/font/fontfiles/Nygus.otf" id="1_0vns5"]
+
+[resource]
+ProgressBar/constants/outline_size = 4
+ProgressBar/font_sizes/font_size = 20
+ProgressBar/fonts/font = ExtResource("1_0vns5")

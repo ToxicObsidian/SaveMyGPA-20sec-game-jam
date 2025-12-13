@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bb1hhg6behumn"]
+
+[ext_resource type="FontFile" uid="uid://dtiedo4k6r1bh" path="res://resources/font/fontfiles/Nygus.otf" id="1_nt5kr"]
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_outline_color = Color(0.18215626, 0.18215623, 0.18215623, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 18
+Button/fonts/font = ExtResource("1_nt5kr")
