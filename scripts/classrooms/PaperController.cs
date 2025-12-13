@@ -30,6 +30,18 @@ public partial class PaperController : Sprite2D
         get { return _paper_side; }
         set { _paper_side = value; _UpdatePaperSide(); }
     }
+    public bool FirstFlipped
+    {
+        get { return _paper_has_flipped; }
+    }
+    public int TotalCount
+    {
+        get { return _questions.Count; }
+    }
+    public int HideCount
+    {
+        get { return _hide_count; }
+    }
 
 
     protected bool _paper_has_flipped = false;
@@ -102,10 +114,16 @@ public partial class PaperController : Sprite2D
 
     public void FlipPaper()
     {
-        if (!_paper_has_flipped) EmitSignal(SignalName.PaperFirstFlipped);
+        if (!_paper_has_flipped)
+        {
+            EmitSignal(SignalName.PaperFirstFlipped);
+            _paper_has_flipped = true;
+        }
 
         // Flip the paper.
         Side = !Side;
+        // Play SFX
+        AudioManager.Instance.PlaySFX("flip_paper");
     }
 
 

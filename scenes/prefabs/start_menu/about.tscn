@@ -1,25 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://budia60tn556e"]
+[gd_scene load_steps=5 format=3 uid="uid://budia60tn556e"]
 
 [ext_resource type="Script" uid="uid://dq13vi6whiel4" path="res://scripts/start_menu/About.cs" id="1_g2xg5"]
-[ext_resource type="SystemFont" uid="uid://pxek1fatuq4a" path="res://resources/font/about_font_eng.tres" id="1_rkidp"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7etm7"]
-font = ExtResource("1_rkidp")
-font_size = 48
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_g2xg5"]
-font = ExtResource("1_rkidp")
-font_size = 28
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_rkidp"]
-font = ExtResource("1_rkidp")
-font_size = 18
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="LabelSettings" uid="uid://doyt006b1qmie" path="res://resources/font/label_settings/panel_titles.tres" id="2_vyu6h"]
+[ext_resource type="LabelSettings" uid="uid://56c2odtwpfgi" path="res://resources/font/label_settings/panel_desc.tres" id="3_lly1n"]
+[ext_resource type="Theme" uid="uid://bigemb5s8hufd" path="res://resources/font/themes/about_RTL_theme.tres" id="4_d57mv"]
 
 [node name="About" type="Control" node_paths=PackedStringArray("DetectionBG")]
 layout_mode = 3
@@ -65,7 +49,7 @@ offset_top = 10.0
 offset_bottom = 77.0
 grow_horizontal = 2
 text = "Save My GPA"
-label_settings = SubResource("LabelSettings_7etm7")
+label_settings = ExtResource("2_vyu6h")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -77,22 +61,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -275.0
-offset_top = -250.0
-offset_right = 275.0
-offset_bottom = 250.0
+offset_left = -288.0
+offset_top = -323.0
+offset_right = 296.0
+offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Description:
-  A game filled with laughters and memes.
+  You took a nap in the middle of the exam… and now it’s already over! Before the teacher takes your paper, scramble to finish as many questions as you can. You’ve got only 20 seconds, no time to think, and your best hope is to ask your classmates — who, unfortunately, might be just as clueless as you.
 
 How to play?
-  Click to interact;
-  Bless to pass this test.
+  Click to interact with your classmates.
 
 "
-label_settings = SubResource("LabelSettings_g2xg5")
-autowrap_mode = 2
+label_settings = ExtResource("3_lly1n")
+autowrap_mode = 3
 
 [node name="Credits" type="VBoxContainer" parent="Panel"]
 custom_minimum_size = Vector2(580, 0)
@@ -100,66 +83,28 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -100.0
-offset_right = 600.0
-offset_bottom = -23.0
+offset_left = 12.0
+offset_top = -186.0
+offset_right = 592.0
+offset_bottom = -15.0
 grow_vertical = 0
+theme = ExtResource("4_d57mv")
+theme_override_constants/separation = 8
 
-[node name="Desc" type="Label" parent="Panel/Credits"]
+[node name="Devs" type="RichTextLabel" parent="Panel/Credits"]
+clip_contents = false
 layout_mode = 2
-text = "This game is proudly brought you by:"
-label_settings = SubResource("LabelSettings_rkidp")
-
-[node name="Obsidian" type="RichTextLabel" parent="Panel/Credits"]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("1_rkidp")
-theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "Toxic_Obsidian ([url=https://t-obsidian.itch.io/]@T_Obsidian[/url])"
+text = "This game is brought to you by:
+[color=4A90E2]Toxic_Obsidian[/color] ([url=https://t-obsidian.itch.io/][color=FA6868]@T_Obsidian[/color][/url]), the programmer, and [br][color=4A90E2]Stardust-MF[/color] ([url=https://stardust-mf.itch.io/][color=FA6868]@Stardust_MF[/color][/url]), the creator of the image assets."
 fit_content = true
 scroll_active = false
 
-[node name="Stardust-MF" type="RichTextLabel" parent="Panel/Credits"]
+[node name="BGM" type="RichTextLabel" parent="Panel/Credits"]
+clip_contents = false
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("1_rkidp")
-theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "Stardust-MF ([url=https://stardust-mf.itch.io/]@Stardust_MF[/url])"
-fit_content = true
-scroll_active = false
-
-[node name="Audio Credits" type="VBoxContainer" parent="Panel"]
-custom_minimum_size = Vector2(580, 0)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -212.0
-offset_right = 600.0
-offset_bottom = -135.0
-grow_vertical = 0
-
-[node name="Desc" type="Label" parent="Panel/Audio Credits"]
-layout_mode = 2
-text = "Audio materials are from:"
-label_settings = SubResource("LabelSettings_rkidp")
-
-[node name="Dova-S" type="RichTextLabel" parent="Panel/Audio Credits"]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("1_rkidp")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "[url=https://dova-s.jp/]Dova-Syndrome[/url]: [url=https://dova-s.jp/EN/_contents/author/profile287.html]@Kobat[/url]"
-fit_content = true
-scroll_active = false
-
-[node name="ZapSplat" type="RichTextLabel" parent="Panel/Audio Credits"]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("1_rkidp")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "[url=https://www.zapsplat.com/]ZapSplat[/url]"
+text = "Also the audio materials are from:
+BGM: [url=https://dova-s.jp/EN/_contents/author/profile287.html][color=4A90E2]@Kobat[/color][/url] (from [url=https://dova-s.jp/][color=F875AA]Dova-Syndrome[/color][/url]) [br] SFX: [url=https://pixabay.com/users/universfield-28281460/][color=4A90E2]@Universfield[/color][/url] and [url=https://pixabay.com/users/linhmitto-46708238/][color=4A90E2]@linhmitto[/color][/url] (from [url=https://pixabay.com/][color=B8DB80]Pixabay[/color][/url]); [url=https://www.zapsplat.com/][color=F9F8F6]@ZapSplat[/color][/url]"
 fit_content = true
 scroll_active = false

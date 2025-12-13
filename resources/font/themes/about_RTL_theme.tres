@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bigemb5s8hufd"]
+
+[ext_resource type="FontFile" uid="uid://dtiedo4k6r1bh" path="res://resources/font/fontfiles/Nygus.otf" id="1_whf43"]
+
+[resource]
+default_font = ExtResource("1_whf43")
+default_font_size = 22
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/line_separation = 4
+RichTextLabel/constants/outline_size = 8
+RichTextLabel/constants/paragraph_separation = 12

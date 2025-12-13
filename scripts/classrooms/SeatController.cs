@@ -50,7 +50,6 @@ public partial class SeatController : Node2D
 		get { return _right_collect; }
 		set { _right_collect = value; }
 	}
-	public bool IsSpecialCharacter { get; set; } = false;
 
 	[Export]
 	public SeatType Type { get; set; }
@@ -69,8 +68,10 @@ public partial class SeatController : Node2D
 			else return NormalBubble;
 		}
 	}
-	protected int _current_answer = -1;
 
+
+	protected int _current_answer = -1;
+	protected bool _is_special_character = false;
 	
 	public enum SeatType
 	{
@@ -143,9 +144,10 @@ public partial class SeatController : Node2D
         _EaseCurrentBubble(1.0f, 0.0f, 0.25f, false);
         Interaction.Visible = true;
     }
-	public void SetNormalBubbleEmotion(Texture2D emotion)
+	public void SetNormalBubbleEmotion(Texture2D emotion, bool is_special)
 	{
 		NormalBubble.Emotion.Texture = emotion;
+		_is_special_character = is_special;
 	}
 
 
@@ -187,7 +189,8 @@ public partial class SeatController : Node2D
 		// 2. Hide the bubble.
 		_current_answer = -1;
         _EaseCurrentBubble(1.0f, 0.0f, 0.25f, false);
-		AudioManager.Instance.PlaySFX("hide_bubble");
+		// Will play SFX: write_answer
+		// AudioManager.Instance.PlaySFX("hide_bubble");
 
         // 3. Show the interaction area.
         Interaction.Visible = true;
@@ -250,11 +253,11 @@ public partial class SeatController : Node2D
 		// Do something.
 		EmitSignal(SignalName.OnPaperCollected);
 		if (Replyable) Interaction.SetAllButtonsDisabled(true);
-		else _ShowNormalBubble(0.3f, 2.5);
+		else if (Type != SeatType.Player) _ShowNormalBubble(0.3f, 2.5);
 	}
 	protected void _ShowNormalBubble(float chance, double duration)
 	{
-		if (new Random().NextSingle() >= chance && !IsSpecialCharacter) return;
+		if (new Random().NextSingle() >= chance && !_is_special_character) return;
 
 		var _tween = CreateTween();
 		_tween.TweenCallback(Callable.From(() => { _CurrentBubble.Visible = true; }));

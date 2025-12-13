@@ -14,7 +14,7 @@ config/name="Save My GPA"
 config/version="0.1.0"
 run/main_scene="uid://b4mq2crqc8rmw"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
-config/icon="res://resources/icon/icon.svg"
+config/icon="uid://b2qvn038w6ceb"
 
 [autoload]
 

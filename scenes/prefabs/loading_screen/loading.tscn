@@ -1,29 +1,22 @@
 [gd_scene load_steps=8 format=3 uid="uid://0f28ep8gk0ql"]
 
-[ext_resource type="SystemFont" uid="uid://pxek1fatuq4a" path="res://resources/font/about_font_eng.tres" id="1_o57nq"]
 [ext_resource type="Script" uid="uid://b7ru8dj625c53" path="res://scripts/loading_screen/LoadingScreenManager.cs" id="1_wtjfp"]
-[ext_resource type="LabelSettings" uid="uid://dcl5n5jir63vb" path="res://resources/font/loading_scene_label_settings.tres" id="3_klgsb"]
+[ext_resource type="Theme" uid="uid://h1jo7464n0k8" path="res://resources/font/themes/loading_theme.tres" id="2_usguq"]
+[ext_resource type="LabelSettings" uid="uid://d1p12nmjpk8q4" path="res://resources/font/label_settings/loading_title.tres" id="3_oeet0"]
+[ext_resource type="LabelSettings" uid="uid://dplvontsrx8dx" path="res://resources/font/label_settings/tips.tres" id="4_2im5g"]
+[ext_resource type="LabelSettings" uid="uid://hevbt1v715up" path="res://resources/font/label_settings/loading_item.tres" id="5_7h8ox"]
 
-[sub_resource type="Gradient" id="Gradient_lwebt"]
+[sub_resource type="Gradient" id="Gradient_klgsb"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0p6h1"]
-gradient = SubResource("Gradient_lwebt")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ig38e"]
+gradient = SubResource("Gradient_klgsb")
 width = 1920
 height = 1080
 
-[sub_resource type="LabelSettings" id="LabelSettings_7fpm2"]
-font = ExtResource("1_o57nq")
-font_size = 64
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ig38e"]
-font = ExtResource("1_o57nq")
-font_size = 25
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
 [node name="Loading Root" type="Node2D" node_paths=PackedStringArray("LoadingOverlay", "LoadingProgressBar", "TipsLabel", "LoadingItemLabel")]
+top_level = true
+visibility_layer = 2
+z_index = 100
 script = ExtResource("1_wtjfp")
 LoadingOverlay = NodePath("LoadingOverlay")
 LoadingProgressBar = NodePath("LoadingOverlay/Center/Loading Progress")
@@ -31,8 +24,13 @@ TipsLabel = NodePath("LoadingOverlay/Center/Tips")
 LoadingItemLabel = NodePath("LoadingOverlay/Center/Loading Item")
 StockTips = Array[String](["Tips: Your classmates may not give you the correct answer.", "Tips: You have to fill the blanks before teacher collects your paper.", "Tips: Click the buttons above your classmates to interact with them."])
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 0
+texture = SubResource("GradientTexture2D_ig38e")
+
 [node name="LoadingOverlay" type="Control" parent="."]
-z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,10 +39,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="LoadingScene BG" type="Sprite2D" parent="LoadingOverlay"]
-texture = SubResource("GradientTexture2D_0p6h1")
-centered = false
+theme = ExtResource("2_usguq")
 
 [node name="Center" type="Control" parent="LoadingOverlay"]
 layout_mode = 1
@@ -75,8 +70,8 @@ offset_right = 123.000244
 offset_bottom = -34.999756
 grow_horizontal = 2
 grow_vertical = 2
-text = "Loading"
-label_settings = SubResource("LabelSettings_7fpm2")
+text = "L o a d i n g"
+label_settings = ExtResource("3_oeet0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -106,7 +101,7 @@ offset_top = -250.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Tips: Your classmates may not give you the proper answer."
-label_settings = ExtResource("3_klgsb")
+label_settings = ExtResource("4_2im5g")
 autowrap_mode = 2
 
 [node name="Loading Item" type="Label" parent="LoadingOverlay/Center"]
@@ -116,5 +111,5 @@ offset_top = 288.0
 offset_right = 1056.0
 offset_bottom = 314.0
 text = "Loading Item"
-label_settings = SubResource("LabelSettings_ig38e")
+label_settings = ExtResource("5_7h8ox")
 text_overrun_behavior = 3

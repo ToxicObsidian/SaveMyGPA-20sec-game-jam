@@ -43,7 +43,12 @@ public partial class GlobalSettings : Resource
         get { return _hesitate_map; }
         set { _hesitate_map = value; }
     }
-
+    [Export]
+    public Dictionary<int, string> DifficultyDesc 
+    {
+        get { return _difficulty_desc; }
+        set { _difficulty_desc = value; }
+    }
     [Export]
     public int MultiChoiceWeight
     {
@@ -72,12 +77,35 @@ public partial class GlobalSettings : Resource
     }
 
 
+    public int MaxDifficulty
+    {
+        get
+        {
+            return _difficulty_map.AsValueEnumerable()
+                .Select(kvp => kvp.Key)
+                .Order()
+                .Reverse()
+                .ToList()[0];
+        }
+    }
+    public int MinDifficulty
+    {
+        get
+        {
+            return _difficulty_map.AsValueEnumerable()
+                .Select(kvp => kvp.Key)
+                .Order()
+                .ToList()[0];
+        }
+    }
+
     // Overall settings
     protected float _level_duration = 20.0f;
     protected int _difficulty = 0;
     protected Dictionary<int, float> _difficulty_map = new();
     protected Dictionary<int, float> _confused_map = new();
     protected Dictionary<int, float> _hesitate_map = new();
+    protected Dictionary<int, string> _difficulty_desc = new();
     protected int _mc_weight = 5;
     protected int _tf_weight = 5;
     protected int _fb_weight = 5;
@@ -91,26 +119,33 @@ public partial class GlobalSettings : Resource
         if (LevelDuration <= 0) return false;
 
         if (Difficulty < 0) return false;
-        Func<Dictionary<int, float>, Dictionary<int, float>, bool> cmp = (d1, d2) =>
-        {
-            if (d1.Count != d2.Count)
-                return false;
-
-            foreach (var key in d1.Keys)
-            {
-                if (!d2.ContainsKey(key))
-                    return false;
-            }
-
-            return true;
-        };
-        if (!cmp(DifficultyMap, ConfusedMap) || 
-            !cmp(DifficultyMap, HesitateMap)) return false;
+        
+        if (!_DictionaryKeysEqual(DifficultyMap, ConfusedMap) || 
+            !_DictionaryKeysEqual(DifficultyMap, HesitateMap) ||
+            !_DictionaryKeysEqual(DifficultyMap, DifficultyDesc)) return false;
         if (!DifficultyMap.Keys.Contains(Difficulty)) return false;
 
         if (MultiChoiceWeight < 0 ||
             TrueFalseWeight < 0 ||
             FillInBlankWeight < 0) return false;
+
+        return true;
+    }
+
+    protected bool 
+    _DictionaryKeysEqual<[MustBeVariant] T1, [MustBeVariant] T2>(
+        Dictionary<int, T1> d1, 
+        Dictionary<int, T2> d2
+    )
+    {
+        if (d1.Count != d2.Count)
+            return false;
+
+        foreach (var key in d1.Keys)
+        {
+            if (!d2.ContainsKey(key))
+                return false;
+        }
 
         return true;
     }

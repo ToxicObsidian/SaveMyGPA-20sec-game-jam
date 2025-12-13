@@ -27,5 +27,5 @@ shape = SubResource("RectangleShape2D_svgdr")
 position = Vector2(-54, -210)
 sprite_frames = ExtResource("2_g50rq")
 animation = &"walk"
-frame_progress = 0.78178
+frame_progress = 0.36075646
 centered = false

@@ -7,6 +7,7 @@ using System;
 [GlobalClass]
 public partial class ClassmateData : Resource
 {
+    [ExportSubgroup("Outfits")]
     [Export]
     public Array<Texture2D> BoyPostures { get; set; }
     [Export]
@@ -24,9 +25,11 @@ public partial class ClassmateData : Resource
     [Export]
     public int AllowCompleteOutfitsDuplicate { get; set; } = 1;
 
-
+    [ExportSubgroup("Emotions")]
     [Export]
-    public Emotions ClassmateEmotions { get; set; }
+    public Dictionary<EmotionType, Texture2D> ClassmateReplyEmotions { get; set; }
+    [Export]
+    public Array<Texture2D> ClassmateNormalEmotions { get; set; }
 
     public override void _ValidateProperty(Dictionary property)
     {

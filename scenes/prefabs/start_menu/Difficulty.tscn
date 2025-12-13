@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv0q706ei8o3h"]
+[gd_scene load_steps=8 format=3 uid="uid://dv0q706ei8o3h"]
 
 [ext_resource type="Texture2D" uid="uid://8ob7lfb03ol6" path="res://resources/images/UI/Settings/difficulty_5.png" id="1_06hnc"]
 [ext_resource type="Script" uid="uid://dg8mq2mke215u" path="res://scripts/start_menu/Difficulty.cs" id="1_214do"]
 [ext_resource type="Texture2D" uid="uid://blayxjm7ksx86" path="res://resources/images/UI/Settings/difficulty_0.png" id="2_214do"]
+[ext_resource type="Texture2D" uid="uid://cywgkedqskvvs" path="res://resources/images/characters/classmates/bubbles/bubble_emotion_circle.png" id="2_rgq0c"]
+[ext_resource type="LabelSettings" uid="uid://bebsqilropa6b" path="res://resources/font/label_settings/panel_item_1.tres" id="5_yeg7m"]
 
-[node name="Difficulty" type="Control" node_paths=PackedStringArray("DifficultySlider", "DifficultyExpr")]
+[sub_resource type="Gradient" id="Gradient_rgq0c"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yeg7m"]
+gradient = SubResource("Gradient_rgq0c")
+
+[node name="Difficulty" type="Control" node_paths=PackedStringArray("DifficultySlider", "DifficultyDesc")]
 custom_minimum_size = Vector2(592, 400)
 layout_mode = 3
 anchors_preset = 0
@@ -12,25 +19,56 @@ offset_right = 592.0
 offset_bottom = 400.0
 script = ExtResource("1_214do")
 DifficultySlider = NodePath("difficulty_slider")
-DifficultyExpr = NodePath("TextureRect")
+DifficultyDesc = NodePath("difficulty_desc")
 
-[node name="img_diff_5" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yeg7m")
+
+[node name="em_diff_min" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 496.0
-offset_top = 32.0
-offset_right = 584.0
-offset_bottom = 120.0
-texture = ExtResource("1_06hnc")
+offset_top = 16.0
+offset_right = 133.70041
+offset_bottom = 144.0
+scale = Vector2(1.2336643, 1.2336643)
+texture = ExtResource("2_rgq0c")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="img_diff_0" type="TextureRect" parent="."]
+[node name="img_diff_min" type="TextureRect" parent="em_diff_min"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 32.0
-offset_right = 112.0
-offset_bottom = 120.0
+offset_top = 16.0
+offset_right = 120.0
+offset_bottom = 112.0
 texture = ExtResource("2_214do")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="em_diff_min2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 64.0
+offset_right = 563.70044
+offset_bottom = 192.0
+scale = Vector2(1.2336643, 1.2336643)
+texture = ExtResource("2_rgq0c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="img_diff_min" type="TextureRect" parent="em_diff_min2"]
+layout_mode = 0
+offset_left = 15.769487
+offset_top = 15.769476
+offset_right = 111.769485
+offset_bottom = 111.76948
+texture = ExtResource("1_06hnc")
 expand_mode = 1
 stretch_mode = 5
 
@@ -38,16 +76,27 @@ stretch_mode = 5
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 24.0
-offset_top = 8.0
-offset_right = -16.0
-offset_bottom = 24.0
+offset_left = 72.00001
+offset_top = 184.00003
+offset_right = -29.935608
+offset_bottom = 200.00003
 grow_horizontal = 2
+rotation = -0.34906584
 max_value = 5.0
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 264.0
-offset_top = 128.0
-offset_right = 304.0
-offset_bottom = 168.0
+[node name="difficulty_desc" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = 32.0
+offset_right = 186.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Desc"
+label_settings = ExtResource("5_yeg7m")
+horizontal_alignment = 1

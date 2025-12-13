@@ -141,6 +141,8 @@ public partial class SeatManager : Node2D
         Vector2I player_coord,
 
         List<List<Tuple<Texture2D, Texture2D, Texture2D>>> classmate_textures,
+        List<Vector2I> special_character_coords, 
+        List<Tuple<Vector2I, Texture2D>> classmate_nbe, 
         Dictionary<SeatController.SeatType, List<Tuple<Texture2D, Texture2D, Texture2D, Vector2, bool>>> classmate_answers,
 
         int total_question_count,
@@ -181,6 +183,18 @@ public partial class SeatManager : Node2D
                 }
             }
         }
+
+        // 4. Set normal bubble emotion
+        foreach (var ctt in classmate_nbe)
+        {
+            var coord = ctt.Item1;
+            var texture = ctt.Item2;
+            var seat = _seat_matrix[coord.X][coord.Y];
+            seat.SetNormalBubbleEmotion(
+                texture, 
+                special_character_coords.Contains(coord) && !seat.Replyable
+            );
+        }
     }
 
 
@@ -191,6 +205,20 @@ public partial class SeatManager : Node2D
             GD.PrintErr("The seat manager has not created seats yet, but queried the CPA coord. Please check the logic.");
         }
         return _seat_matrix[0][0].GetCollectAreaPosition();
+    }
+    public void SetCollectDirection(bool right_collect)
+    {
+        if (_seat_matrix == null || _seat_matrix.Count == 0)
+        {
+            GD.PrintErr("The seat manager has not created seats yet, but requests to set CPA coord. Please check the logic.");
+        }
+        foreach (var row in _seat_matrix)
+        {
+            foreach (var seat in row)
+            { 
+                seat.CollectDirection = right_collect;
+            }
+        }
     }
 
 

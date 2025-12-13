@@ -1,25 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlincb5bjuh2y"]
+[gd_scene load_steps=10 format=3 uid="uid://dlincb5bjuh2y"]
 
-[ext_resource type="SystemFont" uid="uid://pxek1fatuq4a" path="res://resources/font/about_font_eng.tres" id="1_2ja2e"]
-[ext_resource type="Script" uid="uid://1eixficcpmks" path="res://scripts/SettingsManager.cs" id="1_qotqr"]
+[ext_resource type="Script" uid="uid://1eixficcpmks" path="res://scripts/start_menu/Settings.cs" id="1_qotqr"]
 [ext_resource type="PackedScene" uid="uid://dv0q706ei8o3h" path="res://scenes/prefabs/start_menu/difficulty.tscn" id="2_3ir3y"]
+[ext_resource type="LabelSettings" uid="uid://doyt006b1qmie" path="res://resources/font/label_settings/panel_titles.tres" id="2_g834g"]
 [ext_resource type="Texture2D" uid="uid://dlblt6d0b4y7n" path="res://resources/images/UI/Settings/full_screen.png" id="2_kaht5"]
 [ext_resource type="Texture2D" uid="uid://xmcheqraq8du" path="res://resources/images/UI/Settings/windowed.png" id="3_qotqr"]
-
-[sub_resource type="Gradient" id="Gradient_qotqr"]
-colors = PackedColorArray(0.61745477, 0.61745477, 0.6174547, 1, 0.88972396, 0.889724, 0.88972396, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4aams"]
-gradient = SubResource("Gradient_qotqr")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2wsu"]
-texture = SubResource("GradientTexture1D_4aams")
-
-[sub_resource type="LabelSettings" id="LabelSettings_3ir3y"]
-font = ExtResource("1_2ja2e")
-font_size = 48
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="LabelSettings" uid="uid://bebsqilropa6b" path="res://resources/font/label_settings/panel_item_1.tres" id="3_xc3lv"]
+[ext_resource type="LabelSettings" uid="uid://56c2odtwpfgi" path="res://resources/font/label_settings/panel_desc.tres" id="6_gkkhs"]
+[ext_resource type="LabelSettings" uid="uid://bv510aitn37q0" path="res://resources/font/label_settings/panel_item_2.tres" id="7_4atn5"]
 
 [sub_resource type="Theme" id="Theme_kaht5"]
 HBoxContainer/constants/separation = 16
@@ -59,7 +47,6 @@ offset_right = 300.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_k2wsu")
 
 [node name="Title" type="Label" parent="Panel"]
 layout_mode = 1
@@ -69,7 +56,7 @@ offset_top = 10.0
 offset_bottom = 77.0
 grow_horizontal = 2
 text = "Settings"
-label_settings = SubResource("LabelSettings_3ir3y")
+label_settings = ExtResource("2_g834g")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -92,9 +79,10 @@ grow_vertical = 2
 [node name="Windowed" type="HBoxContainer" parent="Panel/Settings Base/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Windowed"]
+[node name="Windowed Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Windowed"]
 layout_mode = 2
 text = "Windowed"
+label_settings = ExtResource("3_xc3lv")
 
 [node name="Control" type="Control" parent="Panel/Settings Base/VBoxContainer/Windowed"]
 custom_minimum_size = Vector2(50, 50)
@@ -128,9 +116,10 @@ stretch_mode = 5
 [node name="Volume" type="VBoxContainer" parent="Panel/Settings Base/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume"]
+[node name="Audio Settings Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume"]
 layout_mode = 2
 text = "Audio Settings"
+label_settings = ExtResource("6_gkkhs")
 
 [node name="Master Base" type="HBoxContainer" parent="Panel/Settings Base/VBoxContainer/Volume"]
 layout_mode = 2
@@ -142,6 +131,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume/Master Base/Master"]
 layout_mode = 2
 text = "Master"
+label_settings = ExtResource("7_4atn5")
 
 [node name="HSlider" type="HSlider" parent="Panel/Settings Base/VBoxContainer/Volume/Master Base/Master"]
 custom_minimum_size = Vector2(350, 0)
@@ -160,6 +150,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume/SFX Base/SFX"]
 layout_mode = 2
 text = "SFX"
+label_settings = ExtResource("7_4atn5")
 
 [node name="HSlider" type="HSlider" parent="Panel/Settings Base/VBoxContainer/Volume/SFX Base/SFX"]
 custom_minimum_size = Vector2(350, 0)
@@ -178,6 +169,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Volume/BGM Base/SFX"]
 layout_mode = 2
 text = "BGM"
+label_settings = ExtResource("7_4atn5")
 
 [node name="HSlider" type="HSlider" parent="Panel/Settings Base/VBoxContainer/Volume/BGM Base/SFX"]
 custom_minimum_size = Vector2(350, 0)
@@ -192,6 +184,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/Settings Base/VBoxContainer/Difficulty"]
 layout_mode = 2
 text = "Difficulty"
+label_settings = ExtResource("3_xc3lv")
 
 [node name="Difficulty" parent="Panel/Settings Base/VBoxContainer/Difficulty" instance=ExtResource("2_3ir3y")]
 layout_mode = 2

@@ -6,17 +6,24 @@ public partial class Difficulty : Control
 	[Export]
 	public HSlider DifficultySlider { get; protected set; }
 	[Export]
-	public TextureRect DifficultyExpr { get; protected set; }
+	public Label DifficultyDesc { get; protected set; }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		DifficultySlider.Value = GameManager.Instance.Settings.Difficulty;
+		var s = GameManager.Instance.Settings;
+		DifficultySlider.MaxValue = s.MaxDifficulty;
+		DifficultySlider.MinValue = s.MinDifficulty;
+		DifficultySlider.Value = s.Difficulty;
+		DifficultyDesc.Text = s.DifficultyDesc[s.Difficulty];
+
 		DifficultySlider.ValueChanged += _OnDifficultyChanged;
 	}
 
 	protected void _OnDifficultyChanged(double value)
 	{
-		GameManager.Instance.Settings.Difficulty = (int)(value + 0.01);
+		int to_difficulty = (int)(value + 0.01);
+        GameManager.Instance.Settings.Difficulty = to_difficulty;
+		DifficultyDesc.Text = GameManager.Instance.Settings.DifficultyDesc[to_difficulty];
 	}
 }

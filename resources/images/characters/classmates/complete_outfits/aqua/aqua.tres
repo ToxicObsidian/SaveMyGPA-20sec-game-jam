@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="ClassmateCompleteOutfitData" load_steps=5 format=3 uid="uid://bu3pf2lqg0akp"]
+[gd_resource type="Resource" script_class="ClassmateCompleteOutfitData" load_steps=7 format=3 uid="uid://bu3pf2lqg0akp"]
 
 [ext_resource type="Texture2D" uid="uid://btwkfbk0uwru0" path="res://resources/images/characters/classmates/complete_outfits/aqua/aqua_body.png" id="1_dlaik"]
 [ext_resource type="Texture2D" uid="uid://djnrjtp86sy2n" path="res://resources/images/characters/classmates/complete_outfits/aqua/aqua_hair.png" id="2_ranwl"]
 [ext_resource type="Texture2D" uid="uid://cr7ocwsjvcqru" path="res://resources/images/characters/classmates/complete_outfits/aqua/aqua_outfit.png" id="3_u6l0y"]
 [ext_resource type="Script" uid="uid://ownp5hefuxr" path="res://scripts/resources/classroom/ClassmateCompleteOutfitData.cs" id="4_nv1ox"]
+[ext_resource type="Texture2D" uid="uid://bbkkdr3cd26pw" path="res://resources/images/characters/classmates/complete_outfits/aqua/emotions/aqua_emotion_1.png" id="4_u6l0y"]
+[ext_resource type="Texture2D" uid="uid://4gr621d3n0f0" path="res://resources/images/characters/classmates/complete_outfits/aqua/emotions/aqua_emotion_2.png" id="5_nv1ox"]
 
 [resource]
 script = ExtResource("4_nv1ox")
@@ -11,4 +13,5 @@ Name = "aqua"
 Body = ExtResource("1_dlaik")
 Hair = ExtResource("2_ranwl")
 Outfit = ExtResource("3_u6l0y")
+SpecialEmotions = Array[Texture2D]([ExtResource("4_u6l0y"), ExtResource("5_nv1ox")])
 metadata/_custom_type_script = "uid://ownp5hefuxr"

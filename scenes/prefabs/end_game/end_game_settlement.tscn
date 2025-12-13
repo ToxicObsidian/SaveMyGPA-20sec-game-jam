@@ -1,19 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://m0pohxvskw4v"]
+[gd_scene load_steps=8 format=3 uid="uid://m0pohxvskw4v"]
 
 [ext_resource type="Script" uid="uid://dvkck314t5h84" path="res://scripts/end_game_menu/EndGameMenu.cs" id="1_1pkyk"]
 [ext_resource type="Texture2D" uid="uid://3j2kal4rnr6m" path="res://resources/images/endings/bg.png" id="2_8xxee"]
-[ext_resource type="Texture2D" uid="uid://da6hdp3cw8bfi" path="res://resources/images/endings/emote.png" id="3_3btyq"]
-[ext_resource type="SystemFont" uid="uid://pxek1fatuq4a" path="res://resources/font/about_font_eng.tres" id="4_k3avr"]
+[ext_resource type="Texture2D" uid="uid://da6hdp3cw8bfi" path="res://resources/images/endings/lose_emote.png" id="3_3btyq"]
+[ext_resource type="Texture2D" uid="uid://dedrf2753x1i0" path="res://resources/images/endings/win_emote.png" id="3_8xxee"]
+[ext_resource type="LabelSettings" uid="uid://d1p12nmjpk8q4" path="res://resources/font/label_settings/loading_title.tres" id="5_3btyq"]
+[ext_resource type="Theme" uid="uid://bb1hhg6behumn" path="res://resources/font/themes/end_game_theme.tres" id="5_k3avr"]
+[ext_resource type="LabelSettings" uid="uid://dplvontsrx8dx" path="res://resources/font/label_settings/tips.tres" id="6_k3avr"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_lbv1g"]
-font = ExtResource("4_k3avr")
-font_size = 60
-
-[node name="End Game Settlement" type="Node2D" node_paths=PackedStringArray("WinText", "LoseText", "TryAgainButton", "BackToMenuButton")]
+[node name="End Game Settlement" type="Node2D" node_paths=PackedStringArray("Points", "Win", "WinTips", "WinEmote", "Lose", "LoseTips", "LoseEmote", "TryAgainButton", "BackToMenuButton")]
 z_index = 10
 script = ExtResource("1_1pkyk")
-WinText = NodePath("Descriptive Base/Panel/Win")
-LoseText = NodePath("Descriptive Base/Panel/Lose")
+Points = NodePath("Descriptive Base/Panel/Points")
+Win = NodePath("Descriptive Base/Panel/Win")
+WinTips = NodePath("Descriptive Base/Panel/Win/Tips")
+WinEmote = NodePath("Win Emote")
+Lose = NodePath("Descriptive Base/Panel/Lose")
+LoseTips = NodePath("Descriptive Base/Panel/Lose/Tips")
+LoseEmote = NodePath("Lose Emote")
+LoseTipsBundle = Array[String](["Tips: Your classmates may give you the wrong answers.", "Tips: The paper is not just one-sided."])
 TryAgainButton = NodePath("Descriptive Base/Panel/Try Again")
 BackToMenuButton = NodePath("Descriptive Base/Panel/Back to menu")
 
@@ -21,7 +26,12 @@ BackToMenuButton = NodePath("Descriptive Base/Panel/Back to menu")
 texture = ExtResource("2_8xxee")
 centered = false
 
-[node name="Emote" type="Sprite2D" parent="."]
+[node name="Win Emote" type="Sprite2D" parent="."]
+texture = ExtResource("3_8xxee")
+centered = false
+
+[node name="Lose Emote" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("3_3btyq")
 centered = false
 
@@ -34,6 +44,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_k3avr")
 
 [node name="Panel" type="Panel" parent="Descriptive Base"]
 layout_mode = 0
@@ -42,31 +53,80 @@ offset_top = 120.0
 offset_right = 1264.0
 offset_bottom = 944.0
 
-[node name="Win" type="Label" parent="Descriptive Base/Panel"]
+[node name="Win" type="Control" parent="Descriptive Base/Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 72.0
-offset_bottom = 133.0
+offset_bottom = 253.0
+grow_horizontal = 2
+
+[node name="Win Description" type="Label" parent="Descriptive Base/Panel/Win"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 253.0
 grow_horizontal = 2
 text = "You passed the exam."
-label_settings = SubResource("LabelSettings_lbv1g")
+label_settings = ExtResource("5_3btyq")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Lose" type="Label" parent="Descriptive Base/Panel"]
+[node name="Tips" type="Label" parent="Descriptive Base/Panel/Win"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 72.0
-offset_bottom = 133.0
+offset_top = 344.0
+offset_bottom = 469.0
+grow_horizontal = 2
+text = "Congratulations, you didn’t fail."
+label_settings = ExtResource("6_k3avr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Lose" type="Control" parent="Descriptive Base/Panel"]
+anchors_preset = 0
+offset_right = 592.0
+offset_bottom = 360.0
+
+[node name="Lose Description" type="Label" parent="Descriptive Base/Panel/Lose"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 253.0
 grow_horizontal = 2
 text = "You failed the course."
-label_settings = SubResource("LabelSettings_lbv1g")
+label_settings = ExtResource("5_3btyq")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Tips" type="Label" parent="Descriptive Base/Panel/Lose"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 344.0
+offset_bottom = 469.0
+grow_horizontal = 2
+text = "Tips: Please check the back "
+label_settings = ExtResource("6_k3avr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Points" type="Label" parent="Descriptive Base/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 232.0
+offset_bottom = 382.0
+grow_horizontal = 2
+text = "Points: XX/XX"
+label_settings = ExtResource("6_k3avr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Try Again" type="Button" parent="Descriptive Base/Panel"]
 layout_mode = 0

@@ -67,7 +67,7 @@ public partial class GameManager : Node
 			ConfusedRatio = Settings.ConfusedMap[Settings.Difficulty],
 			HesitateRatio = Settings.HesitateMap[Settings.Difficulty],
 
-			MaxDifficulty = Settings.DifficultyMap.AsValueEnumerable().Select(kvp => kvp.Key).Order().Reverse().ToList()[0]
+			MaxDifficulty = Settings.MaxDifficulty
 		};
 
 		// Call level manager to start a level.

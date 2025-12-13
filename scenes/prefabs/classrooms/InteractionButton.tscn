@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://co4jk7uhmecnm"]
-
-[node name="InteractionButton" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZLinq;
 
 
 public enum LevelState
@@ -74,9 +75,12 @@ public partial class ClassroomManager : Node2D
 		// Teacher
         TeacherController teacher_base,
 		Vector2 matrix_margin_topdown,
+		bool teacher_collect_direction, 
 		
 		// Classmate textures (body, hair, outfit)
 		List<List<Tuple<Texture2D, Texture2D, Texture2D>>> classmate_textures,
+		List<Vector2I> special_character_coords, 
+		List<Tuple<Vector2I, Texture2D>> classmate_nbe, 
 
         // Paper
 		PackedScene question_controller_scene,
@@ -115,11 +119,14 @@ public partial class ClassroomManager : Node2D
 			Paper, 
 			player_coord, 
 			classmate_textures,
+			special_character_coords, 
+			classmate_nbe, 
 			classmate_answers, 
 			total_question_counts, hide_question_counts
 		);
 		Seats.SetInteractionButtonDisabled(true);
 		Seats.OnDeterminedAnswer += _OnClassmateDeterminedAnswer;
+		Seats.SetCollectDirection(teacher_collect_direction);
 
 		// 3. Load paper.
 		_NextLoadingStage("Loading paper");
@@ -217,9 +224,18 @@ public partial class ClassroomManager : Node2D
 
 		// 3. Calculate marks
 		float player_points = _CalculateMarks();
+		float total_points;
+		bool passed = _PassedExam(player_points, 0.6f, out total_points);
+		bool answered_front_questions = _populated_answers.AsValueEnumerable()
+			.Where((a, idx) => { 
+				return idx < Paper.TotalCount - Paper.HideCount && 
+				(a != SeatController.SeatType.Normal && 
+				 a != SeatController.SeatType.Player); })
+			.Count() >= Paper.TotalCount - Paper.HideCount;
 
-		// 4. Popup end game window.
-		EndGame.SetSettlement(_PassedExam(player_points, 0.6f));
+		GD.Print($"Answered front questions: {answered_front_questions}");
+        // 4. Popup end game window.
+        EndGame.SetSettlement(passed, player_points, total_points, !Paper.FirstFlipped && answered_front_questions );
 	}
 
 	
@@ -248,16 +264,16 @@ public partial class ClassroomManager : Node2D
 		return result;
 	}
 
-	protected bool _PassedExam(float cur_points, float ratio)
+	protected bool _PassedExam(float cur_points, float ratio, out float total_points)
 	{
-		float total_points = 0.0f;
+		total_points = 0.0f;
 		for (int i = 0; i < _points.Count; i++) total_points += _points[i];
 		if (total_points == 0.0f)
 		{
 			GD.PrintErr("Please configure the questions, the total points are 0.");
             return false;
         }
-        return (cur_points / total_points) > ratio;
+        return (cur_points / total_points) >= ratio;
 	}
 
 

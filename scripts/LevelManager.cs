@@ -22,9 +22,7 @@ public partial class LevelManager : Node
     [Export]
     public ClassroomStock StockClassrooms { get; set; }
     
-    /// <summary>
-    /// LevelManager is busy if it is initiating a new level.
-    /// </summary>
+    
     public bool Busy
     {
         get { return _ls_tween != null; }
@@ -121,18 +119,29 @@ public partial class LevelManager : Node
         var player_coord = matrix_info.AllowedPlayerCoordinates.PickRandom();
         var clsrm_scene = rolled_classroom_stock_item.SeatSuite;
         var clsmt_data = rolled_classroom_stock_item.Classmates;
+        Dictionary<Vector2I, List<Texture2D>> complete_outfit_emotions = new();
+        List<Vector2I> special_character_coords = new();
         var clsmt_textures = _RollClassmateTextures(
             clsmt_data, 
             matrix_info.MatrixSize,
-            player_coord
+            player_coord,
+            ref special_character_coords,
+            ref complete_outfit_emotions
         );
-        var clsmt_emotions = clsmt_data.ClassmateEmotions.EmotionTextures;
+        var clsmt_reply_emotions = clsmt_data.ClassmateReplyEmotions;
+        var clsmt_normal_emotions = clsmt_data.ClassmateNormalEmotions;
+        var clsmt_nbe = _RollNormalBubbleEmotions(
+            matrix_info.MatrixSize,
+            player_coord,
+            clsmt_normal_emotions.AsValueEnumerable().ToList(),
+            complete_outfit_emotions
+        );
         
         var clsmt_answers = await _RollClassmateAnswers(
             q_rolled_data,
             q_cwa, 
             q_strikes, 
-            clsmt_emotions,
+            clsmt_reply_emotions,
             info.Difficulty,
             info.MaxDifficulty, 
             info.WrongRatio,
@@ -158,6 +167,7 @@ public partial class LevelManager : Node
             // Teacher
             teacher_base:           teacher_base,
             matrix_margin_topdown:  matrix_info.MatrixMarginTopdown,
+            teacher_collect_direction: NextSingle < 0.5, 
 
             // Paper
             question_controller_scene: qc_scene,
@@ -165,6 +175,8 @@ public partial class LevelManager : Node
 
             // Classmates
             classmate_textures:     clsmt_textures,
+            special_character_coords: special_character_coords, 
+            classmate_nbe:          clsmt_nbe, 
             classmate_answers:      clsmt_answers,
             total_question_counts:  q_total_count,
             hide_question_counts:   q_hide_count,
@@ -425,7 +437,13 @@ public partial class LevelManager : Node
     /// </summary>
     /// <returns>The classmate textures in tuple: (posture/body, hair, outfit)</returns>
     protected List<List<Tuple<Texture2D, Texture2D, Texture2D>>> 
-    _RollClassmateTextures(ClassmateData data, Vector2I matrix_size, Vector2 player_coord, float sex_ratio = 0.5f)
+    _RollClassmateTextures(
+        ClassmateData data, 
+        Vector2I matrix_size, 
+        Vector2 player_coord, 
+        ref List<Vector2I> special_character_coords,
+        ref Dictionary<Vector2I, List<Texture2D>> complete_outfit_emotions, 
+        float sex_ratio = 0.5f)
     {
         List<List<Tuple<Texture2D, Texture2D, Texture2D>>> result = new();
 
@@ -451,8 +469,11 @@ public partial class LevelManager : Node
                     player_coord.Y != j)
                 {
                     var outfit_data = complete_outfits[0];
+                    var cur_coord = new Vector2I(i, j);
                     row.Add(new Tuple<Texture2D, Texture2D, Texture2D>(outfit_data.Body, outfit_data.Hair, outfit_data.Outfit));
                     complete_outfits.RemoveAt(0);
+                    special_character_coords.Add(cur_coord);
+                    complete_outfit_emotions[cur_coord] = outfit_data.SpecialEmotions.AsValueEnumerable().ToList();
                     continue;
                 }
 
@@ -495,7 +516,7 @@ public partial class LevelManager : Node
         List<QuestionData> q_data,
         List<AnswerTextureBundle> common_wrong_answers,
         List<Texture2D> strikes, 
-        Godot.Collections.Dictionary<Emotions.EmotionType, Texture2D> emotions,
+        Godot.Collections.Dictionary<EmotionType, Texture2D> emotions,
         int difficulty,
         int max_difficulty, 
         float wrong_ratio,
@@ -580,6 +601,50 @@ public partial class LevelManager : Node
     }
 
 
+    protected List<Tuple<Vector2I, Texture2D>>
+    _RollNormalBubbleEmotions(
+        Vector2I matrix_size,
+        Vector2I player_coord, 
+        List<Texture2D> emotions,
+        Dictionary<Vector2I, List<Texture2D>> special_emotions
+    )
+    {
+        List<Tuple<Vector2I, Texture2D>> result = new();
+
+        for (int i = 0; i < matrix_size.X; i++)
+        {
+            for (int j = 0; j < matrix_size.Y; j++)
+            {
+                var cur_coord = new Vector2I(i, j);
+                if ( cur_coord == player_coord ||
+                     i == player_coord.X && j - 1 == player_coord.Y ||
+                    (j == player_coord.Y && Math.Abs(i - player_coord.X) == 1))
+                {
+                    continue;
+                }
+
+                if (special_emotions.ContainsKey(cur_coord))
+                {
+                    var sp_emotion = special_emotions[cur_coord];
+                    result.Add(new Tuple<Vector2I, Texture2D>(
+                        cur_coord,
+                        sp_emotion[random.Next(0, sp_emotion.Count)]
+                    ));
+                }
+                else
+                {
+                    result.Add(new Tuple<Vector2I, Texture2D>(
+                        cur_coord, 
+                        emotions[random.Next(0, emotions.Count)]
+                    ));
+                }
+            }
+        }
+
+        return result;
+    }
+
+
     protected AnswerTextureBundle
     _RollWrongTextures(
         int cur_index,
@@ -609,7 +674,7 @@ public partial class LevelManager : Node
 
     protected Texture2D
     _RollEmotionTexture(
-        Godot.Collections.Dictionary<Emotions.EmotionType, Texture2D> emotions,
+        Godot.Collections.Dictionary<EmotionType, Texture2D> emotions,
         int difficulty,
         int max_difficulty,
         bool wrong,
@@ -619,34 +684,34 @@ public partial class LevelManager : Node
         float hesitate_ratio
     )
     {
-        if (difficulty == max_difficulty) return emotions[Emotions.EmotionType.IHaveAnIdea];
+        if (difficulty == max_difficulty) return emotions[EmotionType.IHaveAnIdea];
 
         if (wrong)
         {
             if (hesitate && NextSingle < confuse_ratio)
             {
-                return emotions[Emotions.EmotionType.Sad];
+                return emotions[EmotionType.Sad];
             }
             else if (confused)
             {
-                return emotions[Emotions.EmotionType.LaughCry];
+                return emotions[EmotionType.LaughCry];
             }
             else if (hesitate)
             {
-                return emotions[Emotions.EmotionType.Thinking];
+                return emotions[EmotionType.Thinking];
             }
             else
             {
-                return emotions[Emotions.EmotionType.IHaveAnIdea];
+                return emotions[EmotionType.IHaveAnIdea];
             }
         }
         else
         {
-            if (hesitate) return emotions[Emotions.EmotionType.Thinking];
-            else if (!confused && NextSingle < hesitate_ratio) return emotions[Emotions.EmotionType.IHaveAnIdea];
+            if (hesitate) return emotions[EmotionType.Thinking];
+            else if (!confused && NextSingle < hesitate_ratio) return emotions[EmotionType.IHaveAnIdea];
         }
 
-        return emotions[Emotions.EmotionType.Confidence];
+        return emotions[EmotionType.Confidence];
     }
 
     protected int _img_count = 0;

@@ -8,7 +8,7 @@ public partial class BubbleController : Node2D
     public delegate void OnAnswerDisposedEventHandler();
 
     [Export]
-    public Sprite2D Bubble { get; protected set; }
+    public Node2D Bubble { get; protected set; }
     [Export]
     public Sprite2D Answer { get; protected set; }
     [Export]
