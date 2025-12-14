@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv0q706ei8o3h"]
+[gd_scene load_steps=8 format=3 uid="uid://bmtgq3ant2anq"]
 
 [ext_resource type="Texture2D" uid="uid://8ob7lfb03ol6" path="res://resources/images/UI/Settings/difficulty_5.png" id="1_06hnc"]
 [ext_resource type="Script" uid="uid://dg8mq2mke215u" path="res://scripts/start_menu/Difficulty.cs" id="1_214do"]
