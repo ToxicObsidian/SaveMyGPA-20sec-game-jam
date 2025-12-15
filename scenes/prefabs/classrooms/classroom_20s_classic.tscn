@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://cv0wprsmlp8iy"]
+
+[ext_resource type="Script" uid="uid://ccuhd6hs8g5am" path="res://scripts/classrooms/classroom_manager.gd" id="1_47j0g"]
+[ext_resource type="Texture2D" uid="uid://b158klwugl65s" path="res://resources/images/classroom/classic/classroom_base.jpg" id="2_hmqsk"]
+[ext_resource type="Script" uid="uid://ccndu66myobaf" path="res://scripts/classrooms/teacher_path_controller.gd" id="3_47j0g"]
+[ext_resource type="Script" uid="uid://dybgjgygaukne" path="res://scripts/classrooms/seat_manager.gd" id="4_47j0g"]
+[ext_resource type="Script" uid="uid://b35iddbh2ya2k" path="res://scripts/classrooms/paper_controller.gd" id="6_47j0g"]
+[ext_resource type="Texture2D" uid="uid://c00urx1liodtu" path="res://resources/images/paper/bg/classic_bg.png" id="6_hmqsk"]
+[ext_resource type="Texture2D" uid="uid://can3rxx6wnh2v" path="res://resources/images/paper/questions/t_title.png" id="7_47j0g"]
+[ext_resource type="PackedScene" uid="uid://m0pohxvskw4v" path="res://scenes/prefabs/end_game/end_game_settlement.tscn" id="9_flsyq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmqsk"]
+
+[node name="Classroom20sClassic" type="Node2D" node_paths=PackedStringArray("PathController", "Seats", "Paper", "EndGame")]
+script = ExtResource("1_47j0g")
+PathController = NodePath("teacher_path")
+Seats = NodePath("SeatBase")
+Paper = NodePath("Paper")
+EndGame = NodePath("End Game Settlement")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_hmqsk")
+centered = false
+
+[node name="teacher_path" type="Node2D" parent="." node_paths=PackedStringArray("path_line", "path_follow")]
+script = ExtResource("3_47j0g")
+path_line = NodePath("Path2D")
+path_follow = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="teacher_path"]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="teacher_path/Path2D"]
+position = Vector2(1038, 420)
+rotates = false
+
+[node name="SeatBase" type="Node2D" parent="."]
+script = ExtResource("4_47j0g")
+start_point = Vector2(190, 440)
+horizontal_interval = 240.0
+vertical_interval = 140.0
+margin_top = 40.0
+margin_bottom = 60.0
+
+[node name="Paper" type="Sprite2D" parent="." node_paths=PackedStringArray("front_flip", "back_flip", "front", "back")]
+z_index = 10
+position = Vector2(1616, 544)
+texture = ExtResource("6_hmqsk")
+script = ExtResource("6_47j0g")
+front_flip = NodePath("Front Flip")
+back_flip = NodePath("Back Flip")
+front = NodePath("Content Area/Front")
+back = NodePath("Content Area/Back")
+
+[node name="Front Flip" type="Panel" parent="Paper"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -317.99988
+offset_top = -562.0
+offset_right = -291.0
+offset_bottom = -537.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hmqsk")
+
+[node name="Back Flip" type="Panel" parent="Paper"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -872.9999
+offset_top = -562.0
+offset_right = -846.0
+offset_bottom = -537.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hmqsk")
+
+[node name="Title" type="TextureRect" parent="Paper"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -240.0
+offset_top = -512.0
+offset_right = -350.0
+offset_bottom = -415.0
+grow_horizontal = 2
+texture = ExtResource("7_47j0g")
+
+[node name="Content Area" type="Control" parent="Paper"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -279.99988
+offset_top = -384.0
+offset_right = 280.00012
+offset_bottom = 488.0
+
+[node name="Front" type="VBoxContainer" parent="Paper/Content Area"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Back" type="VBoxContainer" parent="Paper/Content Area"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="End Game Settlement" parent="." instance=ExtResource("9_flsyq")]
+visible = false
+z_index = 20
+
+[node name="HUD_UI" type="Control" parent="."]
+visible = false
+z_index = 100
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dybj5vw0tvqyf"]
+
+[ext_resource type="Script" uid="uid://cb2iu8ot3lpgp" path="res://scripts/utils/visualize_question.gd" id="1_aabnp"]
+[ext_resource type="PackedScene" uid="uid://p0db6aqikxrr" path="res://scenes/prefabs/classrooms/question.tscn" id="2_aabnp"]
+[ext_resource type="Resource" uid="uid://dgdeoh1k6td4d" path="res://resources/stocks/papers/classic_questions/MultiChoice/c_mc_1.tres" id="2_bmu4v"]
+[ext_resource type="Texture2D" uid="uid://c00urx1liodtu" path="res://resources/images/paper/bg/classic_bg.png" id="3_hk2vd"]
+
+[node name="Visualize Question Base" type="Control" node_paths=PackedStringArray("controller")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aabnp")
+question = ExtResource("2_bmu4v")
+controller = NodePath("Paper/Question Base")
+question_oqa_position = Vector2(32, 64)
+question_oqa_scale = Vector2(1, 1)
+
+[node name="Paper" type="Sprite2D" parent="."]
+position = Vector2(320, 560)
+texture = ExtResource("3_hk2vd")
+
+[node name="Question Base" parent="Paper" instance=ExtResource("2_aabnp")]
+offset_left = -272.0
+offset_top = -496.0
+offset_right = -310.0
+offset_bottom = -184.0

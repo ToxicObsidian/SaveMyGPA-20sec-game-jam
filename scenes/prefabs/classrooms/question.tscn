@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://p0db6aqikxrr"]
+
+[ext_resource type="Script" uid="uid://pkryqdugvn5y" path="res://scripts/classrooms/question_controller.gd" id="1_i06fe"]
+
+[node name="Question Base" type="VBoxContainer" node_paths=PackedStringArray("question_rect", "on_question_answer_anchor", "on_question_answer_rect", "answer_layout_container", "qa_spacing", "qa_offset")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 390.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+script = ExtResource("1_i06fe")
+question_rect = NodePath("Question")
+on_question_answer_anchor = NodePath("Question/OQA Anchor")
+on_question_answer_rect = NodePath("Question/OQA Anchor/On Question Answer")
+answer_layout_container = NodePath("Answer Layout Container")
+qa_spacing = NodePath("Spacing")
+qa_offset = NodePath("Answer Layout Container/Offset")
+
+[node name="Question" type="TextureRect" parent="."]
+layout_mode = 2
+stretch_mode = 4
+
+[node name="OQA Anchor" type="Node2D" parent="Question"]
+
+[node name="On Question Answer" type="TextureRect" parent="Question/OQA Anchor"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacing" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Answer Layout Container" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Offset" type="Control" parent="Answer Layout Container"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2

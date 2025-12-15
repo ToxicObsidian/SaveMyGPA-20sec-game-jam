@@ -1,0 +1,24 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch2dmt5yg27iw"]
+
+[ext_resource type="Script" uid="uid://dhu185krqt0y3" path="res://scripts/audio_manager.gd" id="1_1ystd"]
+[ext_resource type="AudioStream" uid="uid://dp3d6n55t3meb" path="res://resources/audio/bgm/Cozy_Room.mp3" id="2_yp8vq"]
+[ext_resource type="AudioStream" uid="uid://dqt1eltvtyn5l" path="res://resources/audio/bgm/Pop'n_Dash.mp3" id="3_ulevj"]
+[ext_resource type="AudioStream" uid="uid://dymv6rh8aylau" path="res://resources/audio/sfx/start_game_sfx.mp3" id="4_dabex"]
+[ext_resource type="AudioStream" uid="uid://dcmq1t2grkdxu" path="res://resources/audio/sfx/write_answer.mp3" id="5_7h41i"]
+[ext_resource type="AudioStream" uid="uid://bwtupc8l8l55p" path="res://resources/audio/sfx/flip_paper.mp3" id="6_7u2p0"]
+[ext_resource type="AudioStream" uid="uid://bmoaj8sifct4o" path="res://resources/audio/sfx/show_bubble.mp3" id="7_2u5cd"]
+[ext_resource type="AudioStream" uid="uid://stw2ktllt8kl" path="res://resources/audio/sfx/hide_bubble.mp3" id="8_wid66"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_1ystd")
+bgm_tracks = Dictionary[String, AudioStream]({
+"classroom": ExtResource("3_ulevj"),
+"start_menu": ExtResource("2_yp8vq")
+})
+sfx_tracks = Dictionary[String, AudioStream]({
+"flip_paper": ExtResource("6_7u2p0"),
+"hide_bubble": ExtResource("8_wid66"),
+"show_bubble": ExtResource("7_2u5cd"),
+"start_game": ExtResource("4_dabex"),
+"write_answer": ExtResource("5_7h41i")
+})

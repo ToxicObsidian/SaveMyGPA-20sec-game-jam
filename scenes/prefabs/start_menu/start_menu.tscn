@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://b1hy2ixwopjdv"]
+
+[ext_resource type="Script" uid="uid://bbf2jtjcntiyb" path="res://scripts/start_menu/start_menu.gd" id="1_8jqd5"]
+[ext_resource type="PackedScene" uid="uid://budia60tn556e" path="res://scenes/prefabs/start_menu/about.tscn" id="1_p77by"]
+[ext_resource type="Texture2D" uid="uid://ec4fuc4j8lcq" path="res://resources/images/start_menu/bg.png" id="2_qhw2v"]
+[ext_resource type="PackedScene" uid="uid://dlincb5bjuh2y" path="res://scenes/prefabs/start_menu/settings.tscn" id="4_qhw2v"]
+[ext_resource type="Texture2D" uid="uid://mstp2oabnpj0" path="res://resources/images/start_menu/start_game.png" id="5_p8kmu"]
+[ext_resource type="Texture2D" uid="uid://7rq3jgeyirex" path="res://resources/images/start_menu/start_game_pressed.png" id="6_wetnx"]
+[ext_resource type="Texture2D" uid="uid://frugsl35s4h0" path="res://resources/images/start_menu/start_game_hover.png" id="7_pbu11"]
+[ext_resource type="Texture2D" uid="uid://3gb68fgqkjcf" path="res://resources/images/start_menu/quit.png" id="8_pbu11"]
+[ext_resource type="Texture2D" uid="uid://bcgf4gm0exc3i" path="res://resources/images/start_menu/settings_pressed.png" id="9_8jqd5"]
+[ext_resource type="Texture2D" uid="uid://yj3bkx2l32ds" path="res://resources/images/start_menu/quit_hover.png" id="9_a6g6n"]
+[ext_resource type="Texture2D" uid="uid://ccp1515xgtcdk" path="res://resources/images/start_menu/settings_hover.png" id="10_pqc8d"]
+[ext_resource type="Texture2D" uid="uid://dtw70m2jekwk8" path="res://resources/images/start_menu/about.png" id="11_1mab1"]
+[ext_resource type="Texture2D" uid="uid://b415yxgxru1fg" path="res://resources/images/start_menu/settings.png" id="11_7r2nh"]
+[ext_resource type="Texture2D" uid="uid://1kewpoylxf0y" path="res://resources/images/start_menu/about_hover.png" id="12_86pay"]
+
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("StartGameBtn", "QuitGameBtn", "AboutBtn", "SettingsBtn", "AboutPage", "SettingsPage")]
+script = ExtResource("1_8jqd5")
+StartGameBtn = NodePath("HUD_UI/Btn_Start_Game")
+QuitGameBtn = NodePath("HUD_UI/Btn_Quit")
+AboutBtn = NodePath("HUD_UI/Btn_About")
+SettingsBtn = NodePath("HUD_UI/Btn_Settings")
+AboutPage = NodePath("HUD_UI/About")
+SettingsPage = NodePath("HUD_UI/Settings")
+
+[node name="StartMenu BG" type="Sprite2D" parent="."]
+texture = ExtResource("2_qhw2v")
+centered = false
+
+[node name="HUD_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Btn_Start_Game" type="TextureButton" parent="HUD_UI"]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 552.0
+offset_right = 1132.0
+offset_bottom = 804.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_p8kmu")
+texture_pressed = ExtResource("6_wetnx")
+texture_hover = ExtResource("7_pbu11")
+
+[node name="Btn_Quit" type="TextureButton" parent="HUD_UI"]
+layout_mode = 0
+offset_left = 1216.0
+offset_top = 784.0
+offset_right = 1764.0
+offset_bottom = 1039.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("8_pbu11")
+texture_pressed = ExtResource("6_wetnx")
+texture_hover = ExtResource("9_a6g6n")
+
+[node name="Btn_Settings" type="TextureButton" parent="HUD_UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = 16.0
+offset_right = -25.0
+offset_bottom = 137.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_7r2nh")
+texture_pressed = ExtResource("9_8jqd5")
+texture_hover = ExtResource("10_pqc8d")
+
+[node name="Btn_About" type="TextureButton" parent="HUD_UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -109.0
+offset_right = 222.0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11_1mab1")
+texture_hover = ExtResource("12_86pay")
+
+[node name="About" parent="HUD_UI" instance=ExtResource("1_p77by")]
+visible = false
+layout_mode = 1
+mouse_filter = 1
+
+[node name="Settings" parent="HUD_UI" instance=ExtResource("4_qhw2v")]
+visible = false
+layout_mode = 0

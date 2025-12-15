@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="QuestionData" load_steps=14 format=3 uid="uid://capa5ekxaaha5"]
+
+[ext_resource type="Script" uid="uid://cuoijv24kwpc8" path="res://scripts/resources/classroom/QuestionData.cs" id="1_e5g2a"]
+[ext_resource type="Texture2D" uid="uid://c18u8jm4ilibg" path="res://resources/images/paper/icons/common wrong answers/cwa_1.png" id="1_njsyn"]
+[ext_resource type="Texture2D" uid="uid://ced3bbsleh23l" path="res://resources/images/paper/icons/common wrong answers/cwa_2.png" id="2_r8dvb"]
+[ext_resource type="Script" uid="uid://cqhb5c8epgdv1" path="res://scripts/resources/classroom/AnswerTextureBundle.cs" id="3_7bko3"]
+[ext_resource type="Resource" uid="uid://bnq8x1ac8vwo4" path="res://resources/stocks/papers/Common Wrong Answers/cwa_1.tres" id="4_27bno"]
+[ext_resource type="Texture2D" uid="uid://cgeyjh3gbakrr" path="res://resources/images/paper/questions/classic/MultiChoices/t1/c_mc_t1_q.png" id="4_r8dvb"]
+[ext_resource type="Resource" uid="uid://b1kn4vpa0q5h3" path="res://resources/stocks/papers/Common Wrong Answers/cwa_2.tres" id="5_iogw0"]
+[ext_resource type="Resource" uid="uid://c3iy5f8pult2e" path="res://resources/stocks/papers/Common Wrong Answers/cwa_3.tres" id="6_5uw4q"]
+[ext_resource type="Resource" uid="uid://wfm08cxt368e" path="res://resources/stocks/papers/Common Wrong Answers/cwa_4.tres" id="7_466ap"]
+[ext_resource type="Resource" uid="uid://ciqxv4qcvwg4g" path="res://resources/stocks/papers/Common Wrong Answers/cwa_5.tres" id="8_cvw20"]
+[ext_resource type="Resource" uid="uid://b6xt4aj271nhl" path="res://resources/stocks/papers/Common Wrong Answers/cwa_6.tres" id="9_4kbeu"]
+[ext_resource type="Resource" uid="uid://dsnidkin1jrb7" path="res://resources/stocks/papers/Common Wrong Answers/cwa_7.tres" id="10_2rp4q"]
+
+[sub_resource type="Resource" id="Resource_iu8vq"]
+script = ExtResource("3_7bko3")
+AnswerTexture = ExtResource("1_njsyn")
+OqaTexture = ExtResource("2_r8dvb")
+metadata/_custom_type_script = "uid://cqhb5c8epgdv1"
+
+[resource]
+script = ExtResource("1_e5g2a")
+QuestionTexture = ExtResource("4_r8dvb")
+WrongAnswerOptions = Array[Object]([ExtResource("4_27bno"), ExtResource("5_iogw0"), ExtResource("6_5uw4q"), ExtResource("7_466ap"), ExtResource("8_cvw20"), ExtResource("9_4kbeu"), ExtResource("10_2rp4q")])
+CorrectAnswer = SubResource("Resource_iu8vq")
+OnQuestionAnswerPosition = Vector2(33, 63)
+Tags = null
+metadata/_custom_type_script = "uid://cuoijv24kwpc8"

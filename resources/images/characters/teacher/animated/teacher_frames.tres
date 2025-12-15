@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://po5wq403sgm2"]
+
+[ext_resource type="Texture2D" uid="uid://b0820ni1gsl5r" path="res://resources/images/characters/teacher/animated/00.png" id="1_efirc"]
+[ext_resource type="Texture2D" uid="uid://ckcxdeudwwlpo" path="res://resources/images/characters/teacher/animated/01.png" id="2_hopqi"]
+[ext_resource type="Texture2D" uid="uid://ble13a7g6gory" path="res://resources/images/characters/teacher/animated/02.png" id="3_m0e7f"]
+[ext_resource type="Texture2D" uid="uid://w2hxdotik8i2" path="res://resources/images/characters/teacher/animated/03.png" id="4_br8a7"]
+[ext_resource type="Texture2D" uid="uid://d01pembkiok31" path="res://resources/images/characters/teacher/animated/04.png" id="5_l08c5"]
+[ext_resource type="Texture2D" uid="uid://xfp8cunrlv3k" path="res://resources/images/characters/teacher/animated/05.png" id="6_4uq52"]
+[ext_resource type="Texture2D" uid="uid://dcq7okbtyyc76" path="res://resources/images/characters/teacher/animated/06.png" id="7_8mn55"]
+[ext_resource type="Texture2D" uid="uid://c2mejct13eubt" path="res://resources/images/characters/teacher/animated/07.png" id="8_hgu1j"]
+[ext_resource type="Texture2D" uid="uid://1tqf4vhp6vdo" path="res://resources/images/characters/teacher/animated/08.png" id="9_s7n0o"]
+[ext_resource type="Texture2D" uid="uid://ddc4t84hsfti0" path="res://resources/images/characters/teacher/animated/09.png" id="10_rkx1e"]
+[ext_resource type="Texture2D" uid="uid://x6wj88tg2x13" path="res://resources/images/characters/teacher/animated/10.png" id="11_wtgjr"]
+[ext_resource type="Texture2D" uid="uid://bpsxvh881k1gr" path="res://resources/images/characters/teacher/animated/11.png" id="12_2a3wx"]
+[ext_resource type="Texture2D" uid="uid://mob0dlofwbro" path="res://resources/images/characters/teacher/animated/12.png" id="13_bdi0m"]
+[ext_resource type="Texture2D" uid="uid://bf2keqrv2y1im" path="res://resources/images/characters/teacher/animated/13.png" id="14_evif7"]
+[ext_resource type="Texture2D" uid="uid://c4ab5bgei0iss" path="res://resources/images/characters/teacher/animated/14.png" id="15_r2dg7"]
+[ext_resource type="Texture2D" uid="uid://dehjtvbco05j6" path="res://resources/images/characters/teacher/animated/15.png" id="16_lklyc"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_efirc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hopqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m0e7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_br8a7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l08c5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4uq52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8mn55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hgu1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_s7n0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rkx1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wtgjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2a3wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_bdi0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_evif7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_r2dg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_lklyc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]

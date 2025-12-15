@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="ClassmateData" load_steps=22 format=3 uid="uid://ca14dvgtiteaw"]
+
+[ext_resource type="Texture2D" uid="uid://bhae4280wqg2e" path="res://resources/images/characters/classmates/h_b_1.png" id="1_fwli2"]
+[ext_resource type="Script" uid="uid://cru8vgfv8un70" path="res://scripts/resources/classroom/classmate_complete_outfit_data.gd" id="1_ik6j1"]
+[ext_resource type="Texture2D" uid="uid://cqkfaoccim1pq" path="res://resources/images/characters/classmates/h_b_2.png" id="2_755i5"]
+[ext_resource type="Script" uid="uid://bh0bomihhy8hw" path="res://scripts/resources/classroom/classmate_data.gd" id="2_wtyby"]
+[ext_resource type="Texture2D" uid="uid://dseusrecnrxqv" path="res://resources/images/characters/classmates/h_b_4.png" id="3_3np2w"]
+[ext_resource type="Texture2D" uid="uid://c4amryy8lswb8" path="res://resources/images/characters/classmates/o_b_1.png" id="4_j6prw"]
+[ext_resource type="Texture2D" uid="uid://cp6veof6dt7k4" path="res://resources/images/characters/classmates/p_b_1.png" id="5_yc2tb"]
+[ext_resource type="Texture2D" uid="uid://btr7qysx2sj6g" path="res://resources/images/characters/classmates/emotions/伤心.png" id="6_yc2tb"]
+[ext_resource type="Texture2D" uid="uid://bpvaqqxuxwn12" path="res://resources/images/characters/classmates/h_g_1.png" id="7_2ef38"]
+[ext_resource type="Resource" uid="uid://bsfcauvl313e0" path="res://resources/images/characters/classmates/complete_outfits/ikun/ikun.tres" id="7_3np2w"]
+[ext_resource type="Texture2D" uid="uid://hxqw04q5i35j" path="res://resources/images/characters/classmates/emotions/笑哭.png" id="7_13qgo"]
+[ext_resource type="Texture2D" uid="uid://djf8kenq1nbev" path="res://resources/images/characters/classmates/emotions/思考.png" id="8_4qmcv"]
+[ext_resource type="Texture2D" uid="uid://5try4bj1rhxq" path="res://resources/images/characters/classmates/h_g_2.png" id="8_13qgo"]
+[ext_resource type="Resource" uid="uid://fearyeoosota" path="res://resources/images/characters/classmates/complete_outfits/aqua/aqua.tres" id="8_j6prw"]
+[ext_resource type="Texture2D" uid="uid://cvxc27blhvu2e" path="res://resources/images/characters/classmates/h_g_3.png" id="9_4qmcv"]
+[ext_resource type="Texture2D" uid="uid://djhrmaok6ujk1" path="res://resources/images/characters/classmates/emotions/自信.png" id="9_54tlt"]
+[ext_resource type="Texture2D" uid="uid://btta103crw7fg" path="res://resources/images/characters/classmates/h_g_4.png" id="10_54tlt"]
+[ext_resource type="Texture2D" uid="uid://c6tfxsawv6ber" path="res://resources/images/characters/classmates/emotions/我有一计.png" id="10_l6par"]
+[ext_resource type="Texture2D" uid="uid://cspx3bgexd1sy" path="res://resources/images/characters/classmates/h_g_5.png" id="11_l6par"]
+[ext_resource type="Texture2D" uid="uid://dot5mtn8jv3fy" path="res://resources/images/characters/classmates/o_g_1.png" id="12_ax3dg"]
+[ext_resource type="Texture2D" uid="uid://81v7n86redvi" path="res://resources/images/characters/classmates/p_g_2.png" id="13_5vbj0"]
+
+[resource]
+script = ExtResource("2_wtyby")
+boy_postures = Array[Texture2D]([ExtResource("5_yc2tb")])
+girl_postures = Array[Texture2D]([ExtResource("13_5vbj0")])
+boy_hairs = Array[Texture2D]([ExtResource("1_fwli2"), ExtResource("2_755i5"), ExtResource("3_3np2w")])
+girl_hairs = Array[Texture2D]([ExtResource("7_2ef38"), ExtResource("8_13qgo"), ExtResource("9_4qmcv"), ExtResource("10_54tlt"), ExtResource("11_l6par")])
+boy_outfits = Array[Texture2D]([ExtResource("4_j6prw")])
+girl_outfits = Array[Texture2D]([ExtResource("12_ax3dg")])
+complete_outfits = Array[ExtResource("1_ik6j1")]([ExtResource("7_3np2w"), ExtResource("8_j6prw")])
+classmate_reply_emotions = Dictionary[int, Texture2D]({
+0: ExtResource("8_4qmcv"),
+1: ExtResource("6_yc2tb"),
+2: ExtResource("9_54tlt"),
+3: ExtResource("7_13qgo"),
+4: ExtResource("10_l6par")
+})
+classmate_normal_emotions = Array[Texture2D]([ExtResource("6_yc2tb"), ExtResource("7_13qgo")])
+metadata/_custom_type_script = "uid://bh0bomihhy8hw"

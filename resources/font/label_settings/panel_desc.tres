@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://56c2odtwpfgi"]
+
+[ext_resource type="FontFile" uid="uid://dtiedo4k6r1bh" path="res://resources/font/fontfiles/Nygus.otf" id="1_ntxe3"]
+
+[resource]
+line_spacing = -5.0
+paragraph_spacing = 4.0
+font = ExtResource("1_ntxe3")
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)

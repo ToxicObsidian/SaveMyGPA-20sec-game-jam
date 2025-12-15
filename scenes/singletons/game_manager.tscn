@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn1db0355dqkv"]
+
+[ext_resource type="Script" uid="uid://ceitukgmbmq6d" path="res://scripts/game_manager.gd" id="1_bx5pk"]
+[ext_resource type="Resource" uid="uid://b0prouvy5ut4n" path="res://resources/stocks/settings.tres" id="2_nj68w"]
+[ext_resource type="PackedScene" uid="uid://b1hy2ixwopjdv" path="res://scenes/prefabs/start_menu/start_menu.tscn" id="3_fqbjr"]
+[ext_resource type="PackedScene" uid="uid://0f28ep8gk0ql" path="res://scenes/prefabs/loading_screen/loading.tscn" id="4_lmkqt"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_bx5pk")
+version_name = "v0.1.0-web"
+settings = ExtResource("2_nj68w")
+start_scene = ExtResource("3_fqbjr")
+loading_screen_scene = ExtResource("4_lmkqt")
