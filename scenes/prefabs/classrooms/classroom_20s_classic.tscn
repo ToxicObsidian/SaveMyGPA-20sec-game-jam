@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cv0wprsmlp8iy"]
 
-[ext_resource type="Script" uid="uid://b5f8hyt22u6fx" path="res://scripts/classrooms/ClassroomManager.cs" id="1_1swyg"]
+[ext_resource type="Script" uid="uid://ccuhd6hs8g5am" path="res://scripts/classrooms/classroom_manager.gd" id="1_47j0g"]
 [ext_resource type="Texture2D" uid="uid://b158klwugl65s" path="res://resources/images/classroom/classic/classroom_base.jpg" id="2_hmqsk"]
-[ext_resource type="Script" uid="uid://crvfnanga5wjv" path="res://scripts/classrooms/TeacherPathController.cs" id="3_1swyg"]
-[ext_resource type="Script" uid="uid://cchhpwolgqqop" path="res://scripts/classrooms/SeatManager.cs" id="4_p3ait"]
-[ext_resource type="Script" uid="uid://cqu65p1xjawuj" path="res://scripts/classrooms/PaperController.cs" id="6_2i0y1"]
+[ext_resource type="Script" uid="uid://ccndu66myobaf" path="res://scripts/classrooms/teacher_path_controller.gd" id="3_47j0g"]
+[ext_resource type="Script" uid="uid://dybgjgygaukne" path="res://scripts/classrooms/seat_manager.gd" id="4_47j0g"]
+[ext_resource type="Script" uid="uid://b35iddbh2ya2k" path="res://scripts/classrooms/paper_controller.gd" id="6_47j0g"]
 [ext_resource type="Texture2D" uid="uid://c00urx1liodtu" path="res://resources/images/paper/bg/classic_bg.png" id="6_hmqsk"]
 [ext_resource type="Texture2D" uid="uid://can3rxx6wnh2v" path="res://resources/images/paper/questions/t_title.png" id="7_47j0g"]
 [ext_resource type="PackedScene" uid="uid://m0pohxvskw4v" path="res://scenes/prefabs/end_game/end_game_settlement.tscn" id="9_flsyq"]
@@ -12,7 +12,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmqsk"]
 
 [node name="Classroom20sClassic" type="Node2D" node_paths=PackedStringArray("PathController", "Seats", "Paper", "EndGame")]
-script = ExtResource("1_1swyg")
+script = ExtResource("1_47j0g")
 PathController = NodePath("teacher_path")
 Seats = NodePath("SeatBase")
 Paper = NodePath("Paper")
@@ -23,7 +23,7 @@ texture = ExtResource("2_hmqsk")
 centered = false
 
 [node name="teacher_path" type="Node2D" parent="." node_paths=PackedStringArray("path_line", "path_follow")]
-script = ExtResource("3_1swyg")
+script = ExtResource("3_47j0g")
 path_line = NodePath("Path2D")
 path_follow = NodePath("Path2D/PathFollow2D")
 
@@ -34,22 +34,22 @@ position = Vector2(1038, 420)
 rotates = false
 
 [node name="SeatBase" type="Node2D" parent="."]
-script = ExtResource("4_p3ait")
-StartPoint = Vector2(200, 420)
-HorizontalInterval = 240.0
-VerticalInterval = 140.0
-MarginTop = 40.0
-MarginBottom = 60.0
+script = ExtResource("4_47j0g")
+start_point = Vector2(190, 440)
+horizontal_interval = 240.0
+vertical_interval = 140.0
+margin_top = 40.0
+margin_bottom = 60.0
 
-[node name="Paper" type="Sprite2D" parent="." node_paths=PackedStringArray("FrontFlip", "BackFlip", "Front", "Back")]
+[node name="Paper" type="Sprite2D" parent="." node_paths=PackedStringArray("front_flip", "back_flip", "front", "back")]
 z_index = 10
 position = Vector2(1616, 544)
 texture = ExtResource("6_hmqsk")
-script = ExtResource("6_2i0y1")
-FrontFlip = NodePath("Front Flip")
-BackFlip = NodePath("Back Flip")
-Front = NodePath("Content Area/Front")
-Back = NodePath("Content Area/Back")
+script = ExtResource("6_47j0g")
+front_flip = NodePath("Front Flip")
+back_flip = NodePath("Back Flip")
+front = NodePath("Content Area/Front")
+back = NodePath("Content Area/Back")
 
 [node name="Front Flip" type="Panel" parent="Paper"]
 anchors_preset = 3

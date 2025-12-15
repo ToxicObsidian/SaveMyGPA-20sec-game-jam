@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://b1hy2ixwopjdv"]
 
+[ext_resource type="Script" uid="uid://bbf2jtjcntiyb" path="res://scripts/start_menu/start_menu.gd" id="1_8jqd5"]
 [ext_resource type="PackedScene" uid="uid://budia60tn556e" path="res://scenes/prefabs/start_menu/about.tscn" id="1_p77by"]
-[ext_resource type="Script" uid="uid://bbyprt0g4hbfl" path="res://scripts/start_menu/StartMenu.cs" id="1_py75a"]
 [ext_resource type="Texture2D" uid="uid://ec4fuc4j8lcq" path="res://resources/images/start_menu/bg.png" id="2_qhw2v"]
 [ext_resource type="PackedScene" uid="uid://dlincb5bjuh2y" path="res://scenes/prefabs/start_menu/settings.tscn" id="4_qhw2v"]
 [ext_resource type="Texture2D" uid="uid://mstp2oabnpj0" path="res://resources/images/start_menu/start_game.png" id="5_p8kmu"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://1kewpoylxf0y" path="res://resources/images/start_menu/about_hover.png" id="12_86pay"]
 
 [node name="StartMenu" type="Node2D" node_paths=PackedStringArray("StartGameBtn", "QuitGameBtn", "AboutBtn", "SettingsBtn", "AboutPage", "SettingsPage")]
-script = ExtResource("1_py75a")
+script = ExtResource("1_8jqd5")
 StartGameBtn = NodePath("HUD_UI/Btn_Start_Game")
 QuitGameBtn = NodePath("HUD_UI/Btn_Quit")
 AboutBtn = NodePath("HUD_UI/Btn_About")

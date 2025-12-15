@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ClassroomStock" load_steps=4 format=3 uid="uid://b4dejmxioli7u"]
+
+[ext_resource type="Script" uid="uid://cg80sde42bqip" path="res://scripts/resources/classroom/classroom_stock_item.gd" id="1_1pq2c"]
+[ext_resource type="Script" uid="uid://dvfbpvheq67ph" path="res://scripts/resources/classroom/classroom_stock.gd" id="2_1bj7v"]
+[ext_resource type="Resource" uid="uid://bp6pjvrpkx3wp" path="res://resources/stocks/classroom/classic/20s_classroom.tres" id="2_mwvwd"]
+
+[resource]
+script = ExtResource("2_1bj7v")
+items = Array[ExtResource("1_1pq2c")]([ExtResource("2_mwvwd")])
+metadata/_custom_type_script = "uid://dvfbpvheq67ph"

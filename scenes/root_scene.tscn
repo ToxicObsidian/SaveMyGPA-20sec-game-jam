@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4mq2crqc8rmw"]
 
-[ext_resource type="Script" uid="uid://d2siat3me07tx" path="res://scripts/GameRootScene.cs" id="1_kc8py"]
+[ext_resource type="Script" uid="uid://bcpqarympbhiu" path="res://scripts/root_scene.gd" id="1_kc8py"]
 
 [node name="GameRoot" type="Control"]
 layout_mode = 3

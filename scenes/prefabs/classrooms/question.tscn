@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://p0db6aqikxrr"]
 
-[ext_resource type="Script" uid="uid://djh0ktw5qork4" path="res://scripts/classrooms/QuestionController.cs" id="1_7awpa"]
+[ext_resource type="Script" uid="uid://pkryqdugvn5y" path="res://scripts/classrooms/question_controller.gd" id="1_i06fe"]
 
-[node name="Question Base" type="VBoxContainer" node_paths=PackedStringArray("QuestionRect", "OnQuestionAnswerAnchor", "OnQuestionAnswerRect", "AnswerLayoutContainer", "QASpacing", "QAOffset")]
+[node name="Question Base" type="VBoxContainer" node_paths=PackedStringArray("question_rect", "on_question_answer_anchor", "on_question_answer_rect", "answer_layout_container", "qa_spacing", "qa_offset")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 390.0
@@ -10,15 +10,13 @@ grow_horizontal = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 0
-script = ExtResource("1_7awpa")
-QuestionRect = NodePath("Question")
-OnQuestionAnswerAnchor = NodePath("Question/OQA Anchor")
-OnQuestionAnswerRect = NodePath("Question/OQA Anchor/On Question Answer")
-AnswerLayoutContainer = NodePath("Answer Layout Container")
-QASpacing = NodePath("Spacing")
-QAOffset = NodePath("Answer Layout Container/Offset")
-Offset = 60.0
-Spacing = 20.0
+script = ExtResource("1_i06fe")
+question_rect = NodePath("Question")
+on_question_answer_anchor = NodePath("Question/OQA Anchor")
+on_question_answer_rect = NodePath("Question/OQA Anchor/On Question Answer")
+answer_layout_container = NodePath("Answer Layout Container")
+qa_spacing = NodePath("Spacing")
+qa_offset = NodePath("Answer Layout Container/Offset")
 
 [node name="Question" type="TextureRect" parent="."]
 layout_mode = 2

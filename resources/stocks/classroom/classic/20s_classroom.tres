@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ClassroomStockItem" load_steps=10 format=3 uid="uid://bp6pjvrpkx3wp"]
+
+[ext_resource type="Resource" uid="uid://ca14dvgtiteaw" path="res://resources/stocks/characters/20s_classmate_data.tres" id="1_4hvhv"]
+[ext_resource type="Script" uid="uid://bm1ke3wk6yh3j" path="res://scripts/resources/classroom/classroom_matrix_settings.gd" id="1_eygyv"]
+[ext_resource type="PackedScene" uid="uid://cv0wprsmlp8iy" path="res://scenes/prefabs/classrooms/classroom_20s_classic.tscn" id="2_bm06d"]
+[ext_resource type="Script" uid="uid://cg80sde42bqip" path="res://scripts/resources/classroom/classroom_stock_item.gd" id="2_tmnvg"]
+[ext_resource type="Resource" uid="uid://bveyxdu0bbghi" path="res://resources/stocks/classroom/classic/matrices/5x5.tres" id="2_v4ksm"]
+[ext_resource type="PackedScene" uid="uid://p0db6aqikxrr" path="res://scenes/prefabs/classrooms/question.tscn" id="5_n0kf6"]
+[ext_resource type="Resource" uid="uid://r0gp7ocukv0g" path="res://resources/stocks/papers/questions.tres" id="6_bm06d"]
+[ext_resource type="PackedScene" uid="uid://clww78mdh8vk4" path="res://scenes/prefabs/classrooms/seat.tscn" id="7_wodge"]
+[ext_resource type="PackedScene" uid="uid://bncs16s8dsd86" path="res://scenes/prefabs/classrooms/teacher.tscn" id="8_q41pi"]
+
+[resource]
+script = ExtResource("2_tmnvg")
+classroom_name = "classic_classroom"
+matrices = Array[ExtResource("1_eygyv")]([ExtResource("2_v4ksm")])
+classmates = ExtResource("1_4hvhv")
+questions = ExtResource("6_bm06d")
+classroom_scene = ExtResource("2_bm06d")
+seat_suite = ExtResource("7_wodge")
+teacher = ExtResource("8_q41pi")
+question_layout = ExtResource("5_n0kf6")
+metadata/_custom_type_script = "uid://cg80sde42bqip"

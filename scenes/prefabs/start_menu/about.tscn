@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://budia60tn556e"]
+[gd_scene load_steps=6 format=3 uid="uid://budia60tn556e"]
 
-[ext_resource type="Script" uid="uid://dq13vi6whiel4" path="res://scripts/start_menu/About.cs" id="1_g2xg5"]
+[ext_resource type="Script" uid="uid://bsi1whx284w5t" path="res://scripts/start_menu/about.gd" id="1_vyu6h"]
 [ext_resource type="LabelSettings" uid="uid://doyt006b1qmie" path="res://resources/font/label_settings/panel_titles.tres" id="2_vyu6h"]
+[ext_resource type="LabelSettings" uid="uid://bv510aitn37q0" path="res://resources/font/label_settings/panel_item_2.tres" id="3_d57mv"]
 [ext_resource type="LabelSettings" uid="uid://56c2odtwpfgi" path="res://resources/font/label_settings/panel_desc.tres" id="3_lly1n"]
 [ext_resource type="Theme" uid="uid://bigemb5s8hufd" path="res://resources/font/themes/about_RTL_theme.tres" id="4_d57mv"]
 
-[node name="About" type="Control" node_paths=PackedStringArray("DetectionBG")]
+[node name="About" type="Control" node_paths=PackedStringArray("detection_bg", "version_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,8 +15,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_g2xg5")
-DetectionBG = NodePath("Click Detection BG")
+script = ExtResource("1_vyu6h")
+detection_bg = NodePath("Click Detection BG")
+version_label = NodePath("Panel/VBoxContainer/Title/version")
 
 [node name="Click Detection BG" type="ColorRect" parent="."]
 layout_mode = 1
@@ -41,39 +43,48 @@ offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 10.0
-offset_bottom = 77.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 4.0
+offset_bottom = -228.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
 text = "Save My GPA"
 label_settings = ExtResource("2_vyu6h")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Desc" type="Label" parent="Panel"]
-custom_minimum_size = Vector2(500, 500)
+[node name="version" type="Label" parent="Panel/VBoxContainer/Title"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -288.0
-offset_top = -323.0
-offset_right = 296.0
-offset_bottom = 218.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -25.0
+offset_right = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+label_settings = ExtResource("3_d57mv")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Desc" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(500, 450)
+layout_mode = 2
 text = "Description:
   You took a nap in the middle of the exam… and now it’s already over! Before the teacher takes your paper, scramble to finish as many questions as you can. You’ve got only 20 seconds, no time to think, and your best hope is to ask your classmates — who, unfortunately, might be just as clueless as you.
 
 How to play?
-  Click to interact with your classmates.
-
-"
+  Click to interact with your classmates."
 label_settings = ExtResource("3_lly1n")
 autowrap_mode = 3
 

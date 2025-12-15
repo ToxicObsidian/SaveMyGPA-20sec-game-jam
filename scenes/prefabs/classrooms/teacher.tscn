@@ -1,15 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://bncs16s8dsd86"]
 
-[ext_resource type="Script" uid="uid://dy887cp05owgs" path="res://scripts/classrooms/TeacherController.cs" id="1_e8jw7"]
+[ext_resource type="Script" uid="uid://dhxc01nvmn17i" path="res://scripts/classrooms/teacher_controller.gd" id="1_e8jw7"]
 [ext_resource type="Texture2D" uid="uid://dlxfki4q80mys" path="res://resources/images/characters/teacher/base.png" id="1_svgdr"]
 [ext_resource type="SpriteFrames" uid="uid://po5wq403sgm2" path="res://resources/images/characters/teacher/animated/teacher_frames.tres" id="2_g50rq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svgdr"]
 size = Vector2(90, 8)
 
-[node name="Teacher" type="Node2D" node_paths=PackedStringArray("ASprite")]
+[node name="Teacher" type="Node2D" node_paths=PackedStringArray("asprite")]
+scale = Vector2(1.2, 1.2)
 script = ExtResource("1_e8jw7")
-ASprite = NodePath("AnimatedSprite2D")
+asprite = NodePath("AnimatedSprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -24,8 +25,9 @@ position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_svgdr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-54, -210)
+position = Vector2(-45, -197)
 sprite_frames = ExtResource("2_g50rq")
 animation = &"walk"
-frame_progress = 0.36075646
+frame = 10
+frame_progress = 0.7029596
 centered = false

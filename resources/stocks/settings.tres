@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="GlobalSettings" load_steps=2 format=3 uid="uid://b0prouvy5ut4n"]
+
+[ext_resource type="Script" uid="uid://dox8j3lh6a4n3" path="res://scripts/resources/global_settings.gd" id="1_bxw6a"]
+
+[resource]
+script = ExtResource("1_bxw6a")
+difficulty = 1
+difficulty_map = Dictionary[int, float]({
+0: 0.0,
+1: 0.25,
+2: 0.35,
+3: 0.5,
+4: 0.6,
+5: 0.75
+})
+confused_map = Dictionary[int, float]({
+0: 0.0,
+1: 0.3,
+2: 0.4,
+3: 0.5,
+4: 0.7,
+5: 0.8
+})
+hesitate_map = Dictionary[int, float]({
+0: 0.0,
+1: 0.3,
+2: 0.35,
+3: 0.45,
+4: 0.6,
+5: 0.0
+})
+difficulty_desc = Dictionary[int, String]({
+0: "Your classmates are geniuses.",
+1: "Easy to pass your exam.",
+2: "A little bit of tricky.",
+3: "Not quite so at ease.",
+4: "You have to be lucky.",
+5: "God bless you."
+})
+fill_in_blank_weight = 0
+windowed = true
+metadata/_custom_type_script = "uid://dox8j3lh6a4n3"

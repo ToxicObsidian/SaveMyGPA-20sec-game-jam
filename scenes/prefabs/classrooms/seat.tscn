@@ -1,21 +1,23 @@
-[gd_scene load_steps=20 format=3 uid="uid://clww78mdh8vk4"]
+[gd_scene load_steps=22 format=3 uid="uid://clww78mdh8vk4"]
 
+[ext_resource type="Script" uid="uid://dvqjyhonmtisd" path="res://scripts/classrooms/seat_controller.gd" id="1_5ti38"]
 [ext_resource type="Texture2D" uid="uid://bp2pgqxixqaq2" path="res://resources/images/classroom/classic/desk.png" id="1_ck3wk"]
-[ext_resource type="Script" uid="uid://gp0u0qydjno5" path="res://scripts/classrooms/SeatController.cs" id="1_duv15"]
-[ext_resource type="Script" uid="uid://bnux5t0uipjeo" path="res://scripts/classrooms/CharacterController.cs" id="3_fq3bn"]
+[ext_resource type="Script" uid="uid://dfkb8wv1sc6do" path="res://scripts/classrooms/character_controller.gd" id="3_5ti38"]
+[ext_resource type="Script" uid="uid://c17blb2x21uj2" path="res://scripts/classrooms/bubble_controller.gd" id="5_670o8"]
 [ext_resource type="Texture2D" uid="uid://bfmvv2wum5u5r" path="res://resources/images/classroom/classic/chair.png" id="5_miq8g"]
 [ext_resource type="Texture2D" uid="uid://bklibe2oijfin" path="res://resources/images/characters/classmates/bubbles/replyable_bubble.png" id="6_5ti38"]
 [ext_resource type="Texture2D" uid="uid://cywgkedqskvvs" path="res://resources/images/characters/classmates/bubbles/bubble_emotion_circle.png" id="7_670o8"]
 [ext_resource type="Texture2D" uid="uid://bqw46etvypklw" path="res://resources/images/characters/classmates/bubbles/submit_answer.png" id="8_5ti38"]
-[ext_resource type="Script" uid="uid://g1a0k70q0j14" path="res://scripts/classrooms/BubbleController.cs" id="8_670o8"]
-[ext_resource type="Script" uid="uid://d3xqgapwxe0h1" path="res://scripts/classrooms/InteractionController.cs" id="8_fq3bn"]
 [ext_resource type="Texture2D" uid="uid://c6tfxsawv6ber" path="res://resources/images/characters/classmates/emotions/我有一计.png" id="9_1quvv"]
 [ext_resource type="Texture2D" uid="uid://bd4hj5tmbey5e" path="res://resources/images/characters/classmates/bubbles/cancel_answer.png" id="9_670o8"]
 [ext_resource type="PackedScene" uid="uid://dwfn4ovmd1dr4" path="res://scenes/prefabs/classrooms/button.tscn" id="9_miq8g"]
 [ext_resource type="Texture2D" uid="uid://djf8kenq1nbev" path="res://resources/images/characters/classmates/emotions/思考.png" id="11_670o8"]
 [ext_resource type="Texture2D" uid="uid://btr7qysx2sj6g" path="res://resources/images/characters/classmates/emotions/伤心.png" id="13_2e6j2"]
+[ext_resource type="Script" uid="uid://bkpwbapw2pyxf" path="res://scripts/classrooms/interaction_controller.gd" id="14_5ti38"]
 [ext_resource type="Texture2D" uid="uid://caut7g55rbdx2" path="res://resources/images/characters/classmates/bubbles/normal_bubble.png" id="14_670o8"]
 [ext_resource type="Texture2D" uid="uid://dlxfki4q80mys" path="res://resources/images/characters/teacher/base.png" id="15_1quvv"]
+[ext_resource type="LabelSettings" uid="uid://bebsqilropa6b" path="res://resources/font/label_settings/panel_item_1.tres" id="17_j8vxa"]
+[ext_resource type="Texture2D" uid="uid://cce4f20d0ych3" path="res://resources/icon/triangle.svg" id="18_2e6j2"]
 
 [sub_resource type="Gradient" id="Gradient_x3sok"]
 
@@ -27,29 +29,30 @@ height = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1quvv"]
 size = Vector2(10, 10)
 
-[node name="Seat" type="Node2D" node_paths=PackedStringArray("Character", "Interaction", "CollectPaperAreaLeft", "CollectPaperAreaRight", "Desk", "Chair", "NormalBubble", "LeftBubble", "RightBubble", "FrontBubble")]
-script = ExtResource("1_duv15")
-Character = NodePath("Character Base")
-Interaction = NodePath("Interaction Base")
-CollectPaperAreaLeft = NodePath("Positioning Anchors/Teacher Walk Position Left/Pick Paper Area")
-CollectPaperAreaRight = NodePath("Positioning Anchors/Teacher Walk Position Right/Pick Paper Area")
-Desk = NodePath("Desk")
-Chair = NodePath("Chair")
-NormalBubble = NodePath("Bubble Base/Normal Bubble Base")
-LeftBubble = NodePath("Bubble Base/Left Bubble Base")
-RightBubble = NodePath("Bubble Base/Right Bubble Base")
-FrontBubble = NodePath("Bubble Base/Front Bubble Base")
+[node name="Seat" type="Node2D" node_paths=PackedStringArray("character", "interaction", "collect_paper_area_left", "collect_paper_area_right", "desk", "chair", "normal_bubble", "left_bubble", "right_bubble", "front_bubble", "player_indicator")]
+script = ExtResource("1_5ti38")
+character = NodePath("Character Base")
+interaction = NodePath("Interaction Base")
+collect_paper_area_left = NodePath("Positioning Anchors/Teacher Walk Position Left/Pick Paper Area")
+collect_paper_area_right = NodePath("Positioning Anchors/Teacher Walk Position Right/Pick Paper Area")
+desk = NodePath("Desk")
+chair = NodePath("Chair")
+normal_bubble = NodePath("Bubble Base/Normal Bubble Base")
+left_bubble = NodePath("Bubble Base/Left Bubble Base")
+right_bubble = NodePath("Bubble Base/Right Bubble Base")
+front_bubble = NodePath("Bubble Base/Front Bubble Base")
+player_indicator = NodePath("You Indicator")
 
 [node name="Desk" type="Sprite2D" parent="."]
 position = Vector2(0, -25)
 texture = ExtResource("1_ck3wk")
 
-[node name="Character Base" type="Node2D" parent="." node_paths=PackedStringArray("Body", "Hair", "Outfit")]
+[node name="Character Base" type="Node2D" parent="." node_paths=PackedStringArray("body", "hair", "outfit")]
 position = Vector2(0, -50)
-script = ExtResource("3_fq3bn")
-Body = NodePath("Character Body")
-Hair = NodePath("Character Hair")
-Outfit = NodePath("Character Outfit")
+script = ExtResource("3_5ti38")
+body = NodePath("Character Body")
+hair = NodePath("Character Hair")
+outfit = NodePath("Character Outfit")
 
 [node name="Character Body" type="Sprite2D" parent="Character Base"]
 
@@ -64,14 +67,14 @@ texture = ExtResource("5_miq8g")
 [node name="Bubble Base" type="Node2D" parent="."]
 z_index = 5
 
-[node name="Left Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("Bubble", "Answer", "Emotion", "DetermineAnswer", "DisposeAnswer")]
+[node name="Left Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("bubble", "answer", "emotion", "determine_answer", "dispose_answer")]
 position = Vector2(-38, -150)
-script = ExtResource("8_670o8")
-Bubble = NodePath("LeftBubble")
-Answer = NodePath("Answer")
-Emotion = NodePath("Left Bubble Emotion")
-DetermineAnswer = NodePath("Determine Answer")
-DisposeAnswer = NodePath("Dispose Answer")
+script = ExtResource("5_670o8")
+bubble = NodePath("LeftBubble")
+answer = NodePath("Answer")
+emotion = NodePath("Left Bubble Emotion")
+determine_answer = NodePath("Determine Answer")
+dispose_answer = NodePath("Dispose Answer")
 
 [node name="LeftBubble" type="Node2D" parent="Bubble Base/Left Bubble Base"]
 
@@ -114,14 +117,14 @@ texture_normal = ExtResource("9_670o8")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Front Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("Bubble", "Answer", "Emotion", "DetermineAnswer", "DisposeAnswer")]
+[node name="Front Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("bubble", "answer", "emotion", "determine_answer", "dispose_answer")]
 position = Vector2(30, -150)
-script = ExtResource("8_670o8")
-Bubble = NodePath("Front Bubble")
-Answer = NodePath("Answer")
-Emotion = NodePath("Front Bubble Emotion")
-DetermineAnswer = NodePath("Determine Answer")
-DisposeAnswer = NodePath("Dispose Answer")
+script = ExtResource("5_670o8")
+bubble = NodePath("Front Bubble")
+answer = NodePath("Answer")
+emotion = NodePath("Front Bubble Emotion")
+determine_answer = NodePath("Determine Answer")
+dispose_answer = NodePath("Dispose Answer")
 
 [node name="Front Bubble" type="Node2D" parent="Bubble Base/Front Bubble Base"]
 
@@ -163,14 +166,14 @@ texture_normal = ExtResource("9_670o8")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Right Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("Bubble", "Answer", "Emotion", "DetermineAnswer", "DisposeAnswer")]
+[node name="Right Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("bubble", "answer", "emotion", "determine_answer", "dispose_answer")]
 position = Vector2(70, -35)
-script = ExtResource("8_670o8")
-Bubble = NodePath("Right Bubble")
-Answer = NodePath("Answer")
-Emotion = NodePath("Right Bubble Emotion")
-DetermineAnswer = NodePath("Determine Answer")
-DisposeAnswer = NodePath("Dispose Answer")
+script = ExtResource("5_670o8")
+bubble = NodePath("Right Bubble")
+answer = NodePath("Answer")
+emotion = NodePath("Right Bubble Emotion")
+determine_answer = NodePath("Determine Answer")
+dispose_answer = NodePath("Dispose Answer")
 
 [node name="Right Bubble" type="Node2D" parent="Bubble Base/Right Bubble Base"]
 
@@ -213,11 +216,11 @@ texture_normal = ExtResource("9_670o8")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Normal Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("Bubble", "Emotion")]
+[node name="Normal Bubble Base" type="Node2D" parent="Bubble Base" node_paths=PackedStringArray("bubble", "emotion")]
 position = Vector2(0, -152)
-script = ExtResource("8_670o8")
-Bubble = NodePath("Normal Bubble")
-Emotion = NodePath("Normal Bubble Emotion")
+script = ExtResource("5_670o8")
+bubble = NodePath("Normal Bubble")
+emotion = NodePath("Normal Bubble Emotion")
 
 [node name="Normal Bubble" type="Sprite2D" parent="Bubble Base/Normal Bubble Base"]
 position = Vector2(-101, -152)
@@ -237,7 +240,7 @@ offset_left = -64.0
 offset_top = -232.0
 offset_right = 60.0
 offset_bottom = -136.0
-script = ExtResource("8_fq3bn")
+script = ExtResource("14_5ti38")
 InteractContainer = NodePath("VBoxContainer/GridContainer")
 ButtonPrefab = ExtResource("9_miq8g")
 
@@ -331,3 +334,38 @@ visible = false
 texture = ExtResource("15_1quvv")
 centered = false
 offset = Vector2(-45, -197)
+
+[node name="You Indicator" type="Control" parent="."]
+z_index = 11
+layout_mode = 3
+anchors_preset = 0
+offset_left = -27.000002
+offset_top = -218.0
+offset_right = 17.999998
+offset_bottom = -147.0
+scale = Vector2(1.2, 1.2)
+
+[node name="Label" type="Label" parent="You Indicator"]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 33.0
+text = "YOU"
+label_settings = ExtResource("17_j8vxa")
+
+[node name="TextureRect" type="TextureRect" parent="You Indicator"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 43.0
+offset_bottom = 63.0
+texture = ExtResource("18_2e6j2")
+expand_mode = 1
+stretch_mode = 5
+flip_v = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="You Indicator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

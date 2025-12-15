@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://0f28ep8gk0ql"]
 
-[ext_resource type="Script" uid="uid://b7ru8dj625c53" path="res://scripts/loading_screen/LoadingScreenManager.cs" id="1_wtjfp"]
+[ext_resource type="Script" uid="uid://dui6a8v0mvl0a" path="res://scripts/loading_screen/loading_scene.gd" id="1_usguq"]
 [ext_resource type="Theme" uid="uid://h1jo7464n0k8" path="res://resources/font/themes/loading_theme.tres" id="2_usguq"]
 [ext_resource type="LabelSettings" uid="uid://d1p12nmjpk8q4" path="res://resources/font/label_settings/loading_title.tres" id="3_oeet0"]
 [ext_resource type="LabelSettings" uid="uid://dplvontsrx8dx" path="res://resources/font/label_settings/tips.tres" id="4_2im5g"]
@@ -13,16 +13,16 @@ gradient = SubResource("Gradient_klgsb")
 width = 1920
 height = 1080
 
-[node name="Loading Root" type="Node2D" node_paths=PackedStringArray("LoadingOverlay", "LoadingProgressBar", "TipsLabel", "LoadingItemLabel")]
+[node name="Loading Root" type="Node2D" node_paths=PackedStringArray("loading_overlay", "loading_progress_bar", "tips_label", "loading_item_label")]
 top_level = true
 visibility_layer = 2
 z_index = 100
-script = ExtResource("1_wtjfp")
-LoadingOverlay = NodePath("LoadingOverlay")
-LoadingProgressBar = NodePath("LoadingOverlay/Center/Loading Progress")
-TipsLabel = NodePath("LoadingOverlay/Center/Tips")
-LoadingItemLabel = NodePath("LoadingOverlay/Center/Loading Item")
-StockTips = Array[String](["Tips: Your classmates may not give you the correct answer.", "Tips: You have to fill the blanks before teacher collects your paper.", "Tips: Click the buttons above your classmates to interact with them."])
+script = ExtResource("1_usguq")
+loading_overlay = NodePath("LoadingOverlay")
+loading_progress_bar = NodePath("LoadingOverlay/Center/Loading Progress")
+tips_label = NodePath("LoadingOverlay/Center/Tips")
+loading_item_label = NodePath("LoadingOverlay/Center/Loading Item")
+stock_tips = Array[String](["Tips: Your classmates may not give you the proper answer.", "Tips: You only have 20 seconds before the teacher collects your paper.", "Tips: Click the buttons above your classmates to interact with them."])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0

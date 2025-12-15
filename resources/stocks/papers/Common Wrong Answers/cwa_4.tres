@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="AnswerTextureBundle" load_steps=3 format=3 uid="uid://wfm08cxt368e"]
 
-[ext_resource type="Script" uid="uid://cqhb5c8epgdv1" path="res://scripts/resources/classroom/AnswerTextureBundle.cs" id="1_5kgi0"]
+[ext_resource type="Script" uid="uid://cth8pu6fvn244" path="res://scripts/resources/classroom/answer_texture_bundle.gd" id="1_5kgi0"]
 [ext_resource type="Texture2D" uid="uid://ddmdnclpifau6" path="res://resources/images/paper/icons/common wrong answers/cwa_4.png" id="1_sqd5m"]
 
 [resource]
 script = ExtResource("1_5kgi0")
-AnswerTexture = ExtResource("1_sqd5m")
-OqaTexture = ExtResource("1_sqd5m")
-metadata/_custom_type_script = "uid://cqhb5c8epgdv1"
+answer_texture = ExtResource("1_sqd5m")
+oqa_texture = ExtResource("1_sqd5m")
+metadata/_custom_type_script = "uid://cth8pu6fvn244"
